@@ -1,0 +1,5 @@
+#!/bin/sh
+
+time=$(date +"%A %Y-%m-%d %I:%M %p")
+time="$time $(date -u +"(%H:%M UTC)")"
+echo "${time}"
