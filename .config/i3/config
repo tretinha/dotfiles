@@ -165,9 +165,9 @@ client.focused $blue $blue #ffffff $blue $blue
 client.unfocused $gray $gray #ffffff $gray $gray
 client.focused_inactive $gray $gray #ffffff $gray $gray
 
-new_window pixel 4
+new_window pixel 6
 
-default_border pixel 5
+default_border pixel 6
 
 # screenlayout
 exec --no-startup-id .screenlayout/two_monitor_setup.sh
