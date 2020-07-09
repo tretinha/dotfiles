@@ -169,6 +169,10 @@ new_window pixel 6
 
 default_border pixel 6
 
+bindsym $mod+Shift+Return exec "alacritty --title=floating"
+for_window [title="floating"] floating enable, sticky enable
+
 # screenlayout
 exec --no-startup-id .screenlayout/two_monitor_setup.sh
 exec --no-startup-id setxkbmap -layout br -option caps:escape
+exec --no-startup-id ~/bin/add-ssh
