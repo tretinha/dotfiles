@@ -10,7 +10,7 @@ export PATH=~/bin:~/.local/bin:$PATH
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
+PS1='[\D{%H:%m:%M} \u@\h \W]\$ '
 
 
 # The next line updates PATH for the Google Cloud SDK.
