@@ -114,7 +114,7 @@ nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬,space:.
 
 syntax enable
-colorscheme ron
+colorscheme acme
 highlight StatusLine cterm=none ctermbg=none ctermfg=darkgrey
 highlight StatusLineNC cterm=none ctermbg=none ctermfg=darkgrey
 highlight Title cterm=none ctermfg=darkgrey
