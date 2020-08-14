@@ -142,7 +142,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Status bar uses custom script
 set $blue #285577
 set $gray #333333
 
@@ -152,22 +151,27 @@ bar {
 	font pango:IPAGothic 11, DejaVu Sans Mono 10
 	strip_workspace_numbers yes
 	colors {
-		background $gray
+		# background $gray
+		# background #888888
+		background #a1eeed"
+		statusline $gray
 		inactive_workspace $gray $gray #888888
-		active_workspace $gray $gray #ffffff
+		active_workspace $blue $blue #ffffff
 		urgent_workspace $red $red #ffffff
-		focused_workspace $blue $blue #ffffff
+		focused_workspace $gray $gray #f5e7de
 		urgent_workspace $red $red #ffffff
 	}
 }
 
-client.focused $blue $blue #ffffff $blue $blue
-client.unfocused $gray $gray #ffffff $gray $gray
-client.focused_inactive $gray $gray #ffffff $gray $gray
+client.focused $gray $gray #ffffff $gray $gray
+# client.unfocused $gray $gray #ffffff $gray $gray
+client.unfocused #f5e7de #f5e7de #ffffff #f5e7de #f5e7de 
+# client.focused_inactive $gray $gray #ffffff $gray $gray
+client.focused_inactive #f5e7de #f5e7de #ffffff #f5e7de #f5e7de 
 
-new_window pixel 6
+new_window pixel 5
 
-default_border pixel 6
+default_border pixel 5
 
 bindsym $mod+Shift+Return exec "alacritty --title=floating"
 for_window [title="floating"] floating enable, sticky enable
@@ -175,4 +179,3 @@ for_window [title="floating"] floating enable, sticky enable
 # screenlayout
 exec --no-startup-id .screenlayout/two_monitor_setup.sh
 exec --no-startup-id setxkbmap -layout br -option caps:escape
-exec --no-startup-id ~/bin/add-ssh
