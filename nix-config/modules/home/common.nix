@@ -45,6 +45,9 @@
     git
     wget
     sops
+    
+    # Editor
+    neovim
   ];
 
   # Git configuration (common across all systems)

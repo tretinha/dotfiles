@@ -132,12 +132,11 @@ in
   # Work-specific bash config
   programs.bash = {
     sessionVariables = {
-      EDITOR = "/home/gustavo/neovim/nvim-linux-x86_64/bin/nvim";
+      EDITOR = "nvim";
       PATH = "$HOME/bin:$HOME/.local/bin:$HOME/.cache/glyd/cas/f686e1d39682f5ada2b165e737eb136521f5a519/bin:$PATH";
     };
 
     shellAliases = {
-      nvim = "~/neovim/nvim-linux-x86_64/bin/nvim";
       infra = "cd ~/glyd/glyd/infra";
 
       # Handy formatter aliases (can use anywhere)
