@@ -9,7 +9,7 @@ if command -v nix &> /dev/null; then
     echo "✓ Nix/Lix is already installed"
 else
     echo "→ Installing Lix..."
-    curl -sSf -L https://install.lix.systems/lix | sh -s -- install
+    curl -sSf -L https://install.lix.systems/lix | sh -s -- install --no-confirm
     
     # Source Lix environment
     if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then

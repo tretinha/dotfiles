@@ -26,7 +26,7 @@ in
     openbox
     picom
     tint2
-    lxpolkit
+    lxqt.lxqt-policykit
     xclip
     scrot
     flameshot
@@ -184,11 +184,11 @@ in
     };
     
     "gl_k_completion.bash" = {
-      source = create_symlink "${nix_xdg_config}/scripts/gl_k_completion.bash";
+      source = ../../config/scripts/gl_k_completion.bash;
     };
     
     "dotfiles_sync" = {
-      source = create_symlink "${nix_xdg_config}/scripts/dotfiles_sync";
+      source = ../../config/scripts/dotfiles_sync;
       executable = true;
     };
   };
@@ -230,9 +230,13 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Enable experimental features
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  # Nix package and settings
+  nix.package = pkgs.lix;
+  
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 }
