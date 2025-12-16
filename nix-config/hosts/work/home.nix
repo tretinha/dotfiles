@@ -103,7 +103,7 @@ in
   programs.bash = {
     sessionVariables = {
       EDITOR = "/home/gustavo/neovim/nvim-linux-x86_64/bin/nvim";
-      PATH = "$HOME/bin:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/.cache/glyd/cas/f686e1d39682f5ada2b165e737eb136521f5a519/bin:$PATH";
+      PATH = "$HOME/bin:$HOME/.local/bin:$HOME/.cache/glyd/cas/f686e1d39682f5ada2b165e737eb136521f5a519/bin:$PATH";
     };
 
     shellAliases = {
