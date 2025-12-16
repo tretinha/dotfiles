@@ -5,25 +5,23 @@ let
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 in
 {
-  home.stateVersion = "25.05";
+  # Gaming PC configuration (NixOS system)
+  
+  imports = [
+    ../../modules/home/common.nix    # Common settings
+    ../../modules/home/desktop.nix   # Desktop environment
+  ];
 
   home.username = "gustavo";
   home.homeDirectory = "/home/gustavo";
 
-  programs.git.enable = true;
-
-  programs.bash = {
-    enable = true;
-  };
-
+  # Gaming-specific configs can go here
+  
+  # Symlink nvim config
   xdg.configFile = {
     "nvim" = {
       source = create_symlink "${nix_xdg_config}/nvim/";
       recursive = true;
     };
   };
-
-  home.packages = with pkgs; [
-    nixfmt-rfc-style
-  ];
 }
