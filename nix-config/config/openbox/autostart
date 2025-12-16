@@ -1,5 +1,5 @@
-picom &
-/usr/bin/lxpolkit & 
+picom --backend xrender &
+lxqt-policykit-agent &
 tint2 &
 1password &
 xset r rate 200 60 &
