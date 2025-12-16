@@ -1,6 +1,7 @@
 picom --backend xrender &
 lxqt-policykit-agent &
-tint2 &
+tint2 -c ~/.config/tint2/my_tint2rc.tint2rc &
+feh --bg-scale ~/Pictures/GLYDWAYS.JPG &
 1password &
 xset r rate 200 60 &
 ~/.screenlayout/single_monitor_120hz.sh &
