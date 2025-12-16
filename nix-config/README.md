@@ -83,14 +83,17 @@ nix-config/
 ├── nixos.nix              # NixOS configurations
 ├── home-manager.nix       # Standalone home-manager configurations
 ├── modules/
-│   └── common.nix         # Common NixOS settings
+│   ├── common.nix         # Common NixOS settings
+│   └── home/              # Home-manager modules (NEW!)
+│       ├── common.nix     # Shared home-manager settings for ALL systems
+│       └── desktop.nix    # Desktop environment configs (GUI apps, WM, etc.)
 ├── hosts/
 │   ├── gaming/            # Gaming PC (NixOS)
 │   │   ├── configuration.nix
 │   │   ├── hardware-configuration.nix
-│   │   └── home.nix
+│   │   └── home.nix       # Imports common + desktop modules
 │   └── work/              # Work PC (Ubuntu + Nix)
-│       └── home.nix
+│       └── home.nix       # Imports common + desktop modules + work-specific
 └── config/                # Dotfiles and configurations
     ├── nvim/              # Neovim config
     ├── openbox/           # Openbox WM config
@@ -100,6 +103,34 @@ nix-config/
     ├── scripts/           # Custom scripts
     └── .tmux.conf         # Tmux config
 ```
+
+### Modular Architecture
+
+This configuration uses a modular approach for easy code reuse and customization:
+
+- **`modules/home/common.nix`**: Settings shared across ALL systems (NixOS and non-NixOS)
+  - Core packages (htop, fzf, ripgrep, git, wget)
+  - Bash baseline configuration
+  - Git and FZF setup
+  - Lix/Nix settings
+
+- **`modules/home/desktop.nix`**: Desktop environment components
+  - Window manager (Openbox)
+  - Desktop utilities (picom, tint2, lxqt-policykit)
+  - GUI apps (1Password, flameshot, etc.)
+  - Tmux configuration
+
+- **`hosts/*/home.nix`**: Host-specific configurations
+  - Import common modules
+  - Override settings using `lib.mkForce` or `lib.mkAfter`
+  - Add host-specific packages and configs
+
+**Benefits:**
+
+- Define common configs once, use everywhere
+- Easy to add new machines (just import modules)
+- Simple per-host customization with Nix's module system
+- Clear separation between shared and host-specific configs
 
 ## Managed Components (Work PC)
 
@@ -120,23 +151,70 @@ See `hosts/work/home.nix` for the complete list of packages managed by Nix.
 
 ### Adding Packages
 
-Edit `hosts/work/home.nix` and add packages to `home.packages`:
+**To all systems:** Add to `modules/home/common.nix`
+
+**To desktop systems only:** Add to `modules/home/desktop.nix`
+
+**To a specific host:** Add to `hosts/<hostname>/home.nix`:
 
 ```nix
 home.packages = with pkgs; [
-  # Add your package here
+  # Add your host-specific package here
   neofetch
 ];
 ```
 
 ### Modifying Bash Configuration
 
-Edit the `programs.bash` section in `hosts/work/home.nix`.
+**Common bash config (all systems):** Edit `modules/home/common.nix`
+
+**Host-specific bash additions:** Edit `hosts/<hostname>/home.nix` and use `lib.mkAfter`:
+
+```nix
+programs.bash = {
+  initExtra = lib.mkAfter ''
+    # Your host-specific bash code here
+  '';
+};
+```
+
+### Overriding Module Settings
+
+Use `lib.mkForce` to override settings from modules:
+
+```nix
+programs.tmux.prefix = lib.mkForce "C-b";  # Override the default C-a
+```
 
 ### Adding New Config Files
 
 1. Add the file to `config/`
-2. Create a symlink in `home.file` or `xdg.configFile` in `hosts/work/home.nix`
+2. Create a symlink in `home.file` or `xdg.configFile` in the appropriate host's `home.nix`
+
+### Creating a New Host Configuration
+
+1. Create a directory `hosts/<new-host>/`
+2. Create `home.nix`:
+   ```nix
+   { config, pkgs, lib, ... }:
+   {
+     imports = [
+       ../../modules/home/common.nix    # Always import this
+       ../../modules/home/desktop.nix   # Import if it's a desktop system
+     ];
+
+     home.username = "your-username";
+     home.homeDirectory = "/home/your-username";
+
+     # Host-specific settings here
+   }
+   ```
+3. Add to `home-manager.nix`:
+   ```nix
+   "username@hostname" = inputs.home-manager.lib.homeManagerConfiguration {
+     # ... configuration
+   };
+   ```
 
 ## Why Lix?
 
