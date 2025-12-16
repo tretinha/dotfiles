@@ -82,22 +82,17 @@ in
       # Lesspipe
       [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
       
-      # Debian chroot
-      if [ -z "$${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-          debian_chroot=$(cat /etc/debian_chroot)
-      fi
-      
       # Colored prompt
       if [ "$TERM" = "xterm-color" ] || [ "$TERM" = "*-256color" ]; then
-          PS1='$${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+          PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
       else
-          PS1='$${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+          PS1='\u@\h:\w\$ '
       fi
       
       # Xterm title
       case "$TERM" in
       xterm*|rxvt*)
-          PS1="\[\e]0;$${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+          PS1="\[\e]0;\u@\h: \w\a\]$PS1"
           ;;
       esac
       
