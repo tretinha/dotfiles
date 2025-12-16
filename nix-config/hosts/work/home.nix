@@ -163,6 +163,11 @@ in
       recursive = true;
     };
 
+    "opencode" = {
+      source = create_symlink "${nix_xdg_config}/opencode";
+      recursive = true;
+    };
+
     "tint2" = {
       source = create_symlink "${nix_xdg_config}/tint2";
       recursive = true;
