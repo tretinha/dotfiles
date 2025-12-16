@@ -95,6 +95,7 @@ in
     # === Additional Development Tools ===
     jq # JSON processor (useful for development)
     yq # YAML processor
+
     opencode
   ];
 
