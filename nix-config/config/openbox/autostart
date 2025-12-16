@@ -1,4 +1,4 @@
-picom --backend xrender &
+picom --backend glx &
 lxqt-policykit-agent &
 tint2 -c ~/.config/tint2/my_tint2rc.tint2rc &
 feh --bg-scale ~/Pictures/GLYDWAYS.JPG &

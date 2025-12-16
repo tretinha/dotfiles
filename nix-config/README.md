@@ -38,6 +38,42 @@ This repository contains my dotfiles managed with [Lix](https://lix.systems/) an
    exec bash
    ```
 
+4. **Work PC Only: System-level Openbox setup**
+   
+   These steps require root access and must be done manually after installing home-manager:
+
+   a. **Configure NVIDIA Prime** (required for external displays):
+   ```bash
+   sudo prime-select nvidia
+   ```
+   
+   b. **Create Openbox session file for GDM**:
+   ```bash
+   # Get the current Nix store path for openbox
+   OPENBOX_SESSION=$(readlink -f ~/.nix-profile/bin/openbox-session)
+   OPENBOX_BIN=$(readlink -f ~/.nix-profile/bin/openbox)
+   
+   # Create the session file
+   sudo tee /usr/share/xsessions/openbox.desktop > /dev/null << EOF
+   [Desktop Entry]
+   Name=Openbox
+   Comment=Log in using the Openbox window manager
+   Exec=$OPENBOX_SESSION
+   TryExec=$OPENBOX_BIN
+   Type=Application
+   X-GDM-SessionRegisters=true
+   EOF
+   ```
+   
+   c. **Reboot** (required for NVIDIA Prime changes):
+   ```bash
+   sudo reboot
+   ```
+   
+   d. After reboot, log out and select "Openbox" from the session menu (gear icon) at the login screen.
+
+   **Note:** If you update openbox via `home-manager switch`, you may need to re-run step 4b to update the session file with the new Nix store path.
+
 ### Manual Installation
 
 If you prefer manual installation:
@@ -241,6 +277,21 @@ This configuration was migrated from a traditional dotfiles setup (managed in `~
 
 ## Troubleshooting
 
+### Work PC: Openbox not appearing in login screen
+
+The Openbox session file requires manual setup on Ubuntu because it needs root access to `/usr/share/xsessions/`. See the "Work PC Only: System-level Openbox setup" section in the installation instructions above.
+
+### Work PC: External monitor not detected
+
+The work PC (gustavo-Precision) has a hybrid Intel/NVIDIA GPU setup. External monitors are connected to the NVIDIA GPU and require NVIDIA Prime to be set to "nvidia" mode:
+
+```bash
+sudo prime-select nvidia
+sudo reboot
+```
+
+This is documented in the work PC setup section above.
+
 ### Lix not found after installation
 
 Source the Lix environment:
@@ -271,6 +322,28 @@ cd ~/dotfiles/nix-config
 nix flake update
 home-manager switch --flake .#gustavo@work
 ```
+
+## Work PC: What's Managed vs Manual
+
+### Managed by Nix/Home Manager
+- ✅ All packages (openbox, picom, tint2, development tools, etc.)
+- ✅ Dotfiles (symlinked from `~/dotfiles/nix-config/config/`)
+- ✅ Openbox configuration (`rc.xml`, `autostart`, `menu.xml`)
+- ✅ Tint2 configuration
+- ✅ Shell configuration (bash, atuin)
+- ✅ Editor configuration (neovim)
+- ✅ Systemd user services (dotfiles-sync, invoice-generator)
+
+### Manual Setup Required (Root Access)
+- ⚠️ NVIDIA Prime mode (`sudo prime-select nvidia`)
+- ⚠️ Openbox GDM session file (`/usr/share/xsessions/openbox.desktop`)
+
+These manual steps are necessary because:
+1. They require root/sudo access
+2. Home-manager cannot modify system directories on non-NixOS systems
+3. They only need to be done once per fresh install
+
+**Why not automate?** These steps require root access and are specific to the work PC hardware (NVIDIA GPU). Keeping them manual and documented is safer and more explicit than trying to automate privileged operations.
 
 ## License
 
