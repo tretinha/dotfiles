@@ -217,6 +217,17 @@ in
     "Documents/Invoices/secrets.json" = {
       source = ../../config/scripts/secrets.json;
     };
+
+    # Openbox session file for display manager
+    ".local/share/xsessions/openbox.desktop".text = ''
+      [Desktop Entry]
+      Name=Openbox
+      Comment=Log in using the Openbox window manager
+      Exec=${config.home.profileDirectory}/bin/openbox-session
+      TryExec=${config.home.profileDirectory}/bin/openbox
+      Type=Application
+      DesktopNames=Openbox
+    '';
   };
 
   # Systemd user services
