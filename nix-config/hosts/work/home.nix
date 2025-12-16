@@ -228,7 +228,10 @@ in
       };
       Service = {
         Type = "oneshot";
-        Environment = "PATH=${config.home.profileDirectory}/bin:/usr/bin:/bin";
+        Environment = [
+          "PATH=${config.home.profileDirectory}/bin:/usr/bin:/bin"
+          "SSH_AUTH_SOCK=%t/keyring/ssh"
+        ];
         ExecStart = "${nix_config_path}/config/scripts/dotfiles_sync";
         StandardOutput = "journal";
         StandardError = "journal";
