@@ -228,7 +228,7 @@ in
       };
       Service = {
         Type = "oneshot";
-        Environment = "PATH=/usr/bin:${config.home.homeDirectory}";
+        Environment = "PATH=${config.home.profileDirectory}/bin:/usr/bin:/bin";
         ExecStart = "${nix_config_path}/config/scripts/dotfiles_sync";
         StandardOutput = "journal";
         StandardError = "journal";
@@ -245,6 +245,7 @@ in
       };
       Service = {
         Type = "oneshot";
+        Environment = "PATH=${config.home.profileDirectory}/bin:/usr/bin:/bin";
         WorkingDirectory = "${config.home.homeDirectory}/Documents/Invoices";
         ExecStart = "/usr/bin/env python3 ${config.home.homeDirectory}/Documents/Invoices/invoice.py";
         StandardOutput = "journal";
