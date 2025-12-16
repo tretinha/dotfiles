@@ -1,0 +1,12 @@
+[Unit]
+Description=Monthly Invoice Generator
+Requires=invoice-generator.timer
+
+[Service]
+WorkingDirectory=/home/gustavo/Documents/Invoices
+ExecStart=/usr/bin/env python3 /home/gustavo/Documents/Invoices/invoice.py
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=timers.target

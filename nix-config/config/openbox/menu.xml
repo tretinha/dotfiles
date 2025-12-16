@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://openbox.org/
+                file:///usr/share/openbox/menu.xsd">
+
+<menu id="root-menu" label="Openbox 3">
+  <item label="Terminal emulator">
+    <action name="Execute">
+      <execute>x-terminal-emulator</execute>
+    </action>
+  </item>
+  <item label="Web browser">
+    <action name="Execute">
+      <execute>firefox</execute>
+    </action>
+  </item>
+
+  <item label="Slack">
+    <action name="Execute">
+      <execute>slack</execute>
+    </action>
+  </item>
+
+  <item label="Files">
+    <action name="Execute">
+      <execute>nautilus</execute>
+    </action>
+  </item>
+
+  <item label="Xournal">
+    <action name="Execute">
+      <execute>xournalpp</execute>
+    </action>
+  </item>
+
+  <item label="Displays">
+    <action name="Execute">
+      <execute>arandr</execute>
+    </action>
+  </item>
+
+  <item label="Sound">
+    <action name="Execute">
+      <execute>pavucontrol</execute>
+    </action>
+  </item>
+
+  <item label="Screenshots">
+    <action name="Execute">
+      <execute>flameshot gui</execute>
+    </action>
+  </item>
+
+  <item label="1Password">
+    <action name="Execute">
+      <execute>1password</execute>
+    </action>
+  </item>
+
+  <item label="Zoom">
+    <action name="Execute">
+      <execute>zoom</execute>
+    </action>
+  </item>
+
+  <item label="Tint2 Config">
+    <action name="Execute">
+      <execute>tint2conf</execute>
+    </action>
+  </item>
+
+  <menu id="Utilities" label="Utilities">
+    <separator/>
+      <item label="Calculator">
+        <action name="Execute">
+          <execute>gnome-calculator</execute>
+        </action>
+      </item>
+      <item label="Caffeine Indicator">
+        <action name="Execute">
+          <execute>caffeine-indicator</execute>
+        </action>
+      </item>
+    <separator>
+  </menu>
+
+  <!-- This requires the presence of the 'obamenu' package to work -->
+  <menu id="/Debian" />
+  <separator />
+  <menu id="applications-menu" label="Applications" execute="/usr/bin/obamenu"/>
+  <separator />
+  <item label="ObConf">
+    <action name="Execute"><execute>obconf</execute></action>
+  </item>
+  <item label="Reconfigure">
+    <action name="Reconfigure" />
+  </item>
+  <item label="Restart">
+    <action name="Restart" />
+  </item>
+  <separator />
+  <item label="Exit">
+    <action name="Exit" />
+  </item>
+</menu>
+
+</openbox_menu>

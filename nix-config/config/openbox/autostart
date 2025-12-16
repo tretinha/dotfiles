@@ -1,0 +1,7 @@
+picom &
+/usr/bin/lxpolkit & 
+tint2 &
+1password &
+xset r rate 200 60 &
+~/.screenlayout/single_monitor_120hz.sh &
+flameshot &

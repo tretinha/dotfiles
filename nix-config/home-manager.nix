@@ -1,0 +1,14 @@
+{ inputs, ... }:
+{
+  flake = {
+    # Standalone home-manager configurations (for non-NixOS systems)
+    homeConfigurations = {
+      "gustavo@work" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          ./hosts/work/home.nix
+        ];
+      };
+    };
+  };
+}

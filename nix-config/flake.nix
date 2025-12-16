@@ -2,6 +2,14 @@
   description = "flake";
 
   inputs = {
+    lix = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs = {
       url = "nixpkgs/nixos-25.05";
     };
@@ -29,6 +37,7 @@
       systems = [ "x86_64-linux" ];
       imports = [
         ./nixos.nix
+        ./home-manager.nix
       ];
     };
   # outputs = { self, nixpkgs, home-manager, ... }: {

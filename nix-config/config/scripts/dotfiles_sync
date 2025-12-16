@@ -1,0 +1,13 @@
+#!/bin/bash
+
+mkdir -p "${HOME}/tmp/dotfiles"
+log_file="${HOME}/tmp/dotfiles/dotfiles_sync.log"
+
+cd "${HOME}"
+
+if ! git diff-index --quiet HEAD --; then
+    git add -u
+    commit="Auto-commit: $(date '+%Y-%m-%d %H:%M:%S')"
+    git commit -m "$commit" >> "${log_file}" 2>&1
+    git push
+fi

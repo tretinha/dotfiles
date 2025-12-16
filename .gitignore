@@ -1,1 +1,12 @@
-*
+# Allow all files by default
+!*
+
+# Ignore build artifacts and generated files
+result
+result-*
+
+# Ignore direnv cache
+.direnv/
+
+# Ignore system-specific files
+.DS_Store
