@@ -230,7 +230,7 @@ in
         Type = "oneshot";
         Environment = [
           "PATH=${config.home.profileDirectory}/bin:/usr/bin:/bin"
-          "SSH_AUTH_SOCK=%t/keyring/ssh"
+          "SSH_AUTH_SOCK=${config.home.homeDirectory}/.1password/agent.sock"
         ];
         ExecStart = "${nix_config_path}/config/scripts/dotfiles_sync";
         StandardOutput = "journal";
