@@ -2,7 +2,7 @@
 {
   flake = {
     nixosConfigurations = {
-      gaming = inputs.nixpkgs-unstable.lib.nixosSystem {
+      gaming = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./hosts/gaming/configuration.nix
@@ -25,13 +25,17 @@
               steam = {
                 updater.splash = "vendor";
                 enable = true;
-                autoStart = true;
+	      # Commenting this out because I'm currently not interested in
+	      # logging directly to big picture
+                # autoStart = true;
                 user = "gustavo";
                 desktopSession = "plasma";
               };
-              steamos = {
-                useSteamOSConfig = true;
-              };
+	      # Commenting this out because I'm currently not interested in
+	      # logging directly to big picture
+              # steamos = {
+              #   useSteamOSConfig = true;
+              # };
             };
           }
         ];
