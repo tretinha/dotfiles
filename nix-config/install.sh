@@ -33,7 +33,7 @@ echo "✓ Home-manager configuration activated!"
 echo
 echo "Next steps:"
 echo "1. Restart your shell or run: source ~/.bashrc"
-echo "2. Your dotfiles are now managed by Nix/home-manager"
+echo "2. The dotfiles are now managed by Nix/home-manager"
 echo "3. To update in the future, run: home-manager switch --flake ~/dotfiles/nix-config#gustavo@work"
 echo
 echo "Note: You may want to backup and remove the old dotfiles from ~ that are now managed by Nix"

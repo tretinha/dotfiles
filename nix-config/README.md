@@ -173,7 +173,7 @@ home.packages = with pkgs; [
 ```nix
 programs.bash = {
   initExtra = lib.mkAfter ''
-    # Your host-specific bash code here
+    # Add host-specific bash code here
   '';
 };
 ```

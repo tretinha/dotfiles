@@ -9,7 +9,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Use regular Nix package from nixpkgs
-  # (Your system already runs Lix 2.94.0, this is just for nix.conf generation)
+  # (This system already runs Lix 2.94.0, this is just for nix.conf generation)
   nix.package = pkgs.nix;
   
   nix.settings = {
