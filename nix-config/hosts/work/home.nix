@@ -1,3 +1,6 @@
+# Updated work machine configuration
+# Includes all formatters/linters for global use + glyd-specific overrides
+
 { config, pkgs, lib, ... }:
 
 let
@@ -17,8 +20,76 @@ in
   home.homeDirectory = "/home/gustavo";
 
   # Additional work-specific packages
+  # These are formatters/linters that work EVERYWHERE (not just glyd)
   home.packages = with pkgs; [
     atuin
+    
+    # === Formatters (work everywhere) ===
+    # C/C++
+    clang-tools          # Includes clang-format
+    
+    # Python
+    ruff                 # Fast Python linter & formatter
+    black                # Python formatter (backup/alternative)
+    isort                # Python import sorter
+    
+    # JavaScript/TypeScript/Web
+    nodePackages.prettier        # JS/TS/JSON/YAML/Markdown formatter
+    nodePackages.eslint_d        # Fast ESLint daemon for linting
+    
+    # Shell
+    shfmt                # Shell script formatter
+    shellcheck           # Shell script linter
+    
+    # Go
+    go                   # Includes gofmt
+    golangci-lint        # Go linter
+    
+    # Terraform/Infrastructure
+    terraform            # Includes terraform fmt
+    tflint               # Terraform linter
+    
+    # Bazel/Starlark
+    buildifier           # Bazel BUILD file formatter
+    
+    # YAML
+    yamllint             # YAML linter
+    
+    # Docker
+    hadolint             # Dockerfile linter
+    
+    # CMake
+    cmake-format         # CMake file formatter
+    
+    # Nix
+    nixfmt-rfc-style     # Already in common.nix, but mentioned for clarity
+    statix               # Nix linter
+    deadnix              # Dead code detector for Nix
+    
+    # Markdown
+    marksman             # Markdown LSP
+    
+    # === Language Servers (LSPs) ===
+    # Note: Some are installed via Mason in nvim, these are system fallbacks
+    
+    # Bash/Shell LSP
+    nodePackages.bash-language-server
+    
+    # JSON LSP  
+    nodePackages.vscode-langservers-extracted  # Includes jsonls, html, css
+    
+    # YAML LSP
+    yaml-language-server
+    
+    # Terraform LSP
+    terraform-ls
+    
+    # Docker LSP
+    nodePackages.dockerfile-language-server-nodejs
+    
+    # === Additional Development Tools ===
+    jq                   # JSON processor (useful for development)
+    yq                   # YAML processor
   ];
 
   # Work-specific bash config
@@ -31,6 +102,13 @@ in
     shellAliases = {
       nvim = "~/neovim/nvim-linux-x86_64/bin/nvim";
       infra = "cd ~/glyd/glyd/infra";
+      
+      # Handy formatter aliases (can use anywhere)
+      fmt-python = "ruff format";
+      fmt-shell = "shfmt -i 2 -ci -s -w";
+      fmt-json = "prettier --write";
+      lint-python = "ruff check";
+      lint-shell = "shellcheck";
     };
     
     # Append work-specific setup after common config
