@@ -103,6 +103,10 @@ in
       source = ../../config/scripts/invoice.py;
       executable = true;
     };
+    
+    "Documents/Invoices/secrets.json" = {
+      source = ../../config/scripts/secrets.json;
+    };
   };
 
   # Systemd user services
