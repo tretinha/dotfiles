@@ -97,6 +97,36 @@ in
     yq # YAML processor
 
     opencode
+
+    # === CLI Tools ===
+    # Note: git, ripgrep, fzf, htop, wget are in common.nix
+    git-lfs
+    tmux
+    tree
+    btop
+    xclip
+    zsh
+
+    # === Desktop/GUI Applications ===
+    flameshot
+    feh
+    arandr
+    dconf-editor
+    xournalpp
+    _1password-gui # 1Password GUI
+
+    # === Window Manager & Desktop Environment ===
+    openbox
+    obconf
+    tint2
+    picom
+    lxqt.lxqt-policykit # Replaces lxpolkit
+    pasystray
+    pavucontrol
+    xfce.xfce4-power-manager
+    xcape
+    caffeine-ng # Replaces caffeine
+    blueman
   ];
 
   # Work-specific bash config
