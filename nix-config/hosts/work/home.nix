@@ -98,6 +98,11 @@ in
       source = ../../config/scripts/dotfiles_sync;
       executable = true;
     };
+    
+    "Documents/Invoices/invoice.py" = {
+      source = ../../config/scripts/invoice.py;
+      executable = true;
+    };
   };
 
   # Systemd user services
@@ -117,6 +122,23 @@ in
         WantedBy = [ "default.target" ];
       };
     };
+    
+    invoice-generator = {
+      Unit = {
+        Description = "Monthly Invoice Generator";
+        Requires = "invoice-generator.timer";
+      };
+      Service = {
+        Type = "oneshot";
+        WorkingDirectory = "${config.home.homeDirectory}/Documents/Invoices";
+        ExecStart = "/usr/bin/env python3 ${config.home.homeDirectory}/Documents/Invoices/invoice.py";
+        StandardOutput = "journal";
+        StandardError = "journal";
+      };
+      Install = {
+        WantedBy = [ "timers.target" ];
+      };
+    };
   };
 
   systemd.user.timers = {
@@ -127,6 +149,20 @@ in
       Timer = {
         OnCalendar = "hourly";
         Persistent = true;
+      };
+      Install = {
+        WantedBy = [ "timers.target" ];
+      };
+    };
+    
+    invoice-generator = {
+      Unit = {
+        Description = "Runs invoice-generator on the last day of the month";
+      };
+      Timer = {
+        OnCalendar = "*-*-* 09:51:00";
+        AccuracySec = "1min";
+        Unit = "invoice-generator.service";
       };
       Install = {
         WantedBy = [ "timers.target" ];
