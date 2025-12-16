@@ -36,8 +36,8 @@
 
       systems = [ "x86_64-linux" ];
       imports = [
-        ./nixos.nix
-        ./home-manager.nix
+        ./nixos.nix      # NixOS system configurations (gaming PC)
+        ./standalone.nix # Standalone home-manager configs (work PC on Ubuntu)
       ];
     };
   # outputs = { self, nixpkgs, home-manager, ... }: {

@@ -80,8 +80,8 @@ home-manager switch --flake ~/dotfiles/nix-config#gustavo@work
 ```
 nix-config/
 ├── flake.nix              # Main flake configuration with Lix
-├── nixos.nix              # NixOS configurations
-├── home-manager.nix       # Standalone home-manager configurations
+├── nixos.nix              # NixOS system configurations (gaming PC)
+├── standalone.nix         # Standalone home-manager configs (work PC)
 ├── modules/
 │   ├── common.nix         # Common NixOS settings
 │   └── home/              # Home-manager modules (NEW!)
@@ -195,6 +195,7 @@ programs.tmux.prefix = lib.mkForce "C-b";  # Override the default C-a
 
 1. Create a directory `hosts/<new-host>/`
 2. Create `home.nix`:
+
    ```nix
    { config, pkgs, lib, ... }:
    {
@@ -209,6 +210,7 @@ programs.tmux.prefix = lib.mkForce "C-b";  # Override the default C-a
      # Host-specific settings here
    }
    ```
+
 3. Add to `home-manager.nix`:
    ```nix
    "username@hostname" = inputs.home-manager.lib.homeManagerConfiguration {
