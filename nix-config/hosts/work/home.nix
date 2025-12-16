@@ -15,6 +15,7 @@ in
   home.packages = with pkgs; [
     # Nix tooling
     nixfmt-rfc-style
+    home-manager
     
     # System utilities
     htop
