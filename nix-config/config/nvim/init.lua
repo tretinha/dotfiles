@@ -83,3 +83,7 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
 -- Disable swap
 vim.opt.swapfile = false
+
+-- Fix for Nix-managed symlinked files
+-- Without this, vim tries to rename over symlinks and fails with E13
+vim.opt.backupcopy = "yes"
