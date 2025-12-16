@@ -3,7 +3,7 @@
 mkdir -p "${HOME}/tmp/dotfiles"
 log_file="${HOME}/tmp/dotfiles/dotfiles_sync.log"
 
-cd "${HOME}"
+cd "${HOME}/dotfiles"
 
 if ! git diff-index --quiet HEAD --; then
     git add -u

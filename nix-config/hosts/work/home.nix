@@ -51,7 +51,7 @@ in
       
       # Work-specific setup
       source /home/gustavo/glyd/glyd/dev/env/login-setup.sh 2>/dev/null || true
-      source ~/gl_k_completion.bash 2>/dev/null || true
+      source ${nix_config_path}/config/scripts/gl_k_completion.bash 2>/dev/null || true
       
       # Atuin
       . "$HOME/.atuin/bin/env" 2>/dev/null || true
@@ -90,15 +90,6 @@ in
       source = create_symlink "${nix_xdg_config}/themes/rio/openbox-3/themerc";
     };
     
-    "gl_k_completion.bash" = {
-      source = ../../config/scripts/gl_k_completion.bash;
-    };
-    
-    "dotfiles_sync" = {
-      source = ../../config/scripts/dotfiles_sync;
-      executable = true;
-    };
-    
     "Documents/Invoices/invoice.py" = {
       source = ../../config/scripts/invoice.py;
       executable = true;
@@ -118,7 +109,7 @@ in
       Service = {
         Type = "oneshot";
         Environment = "PATH=/usr/bin:${config.home.homeDirectory}";
-        ExecStart = "${config.home.homeDirectory}/dotfiles_sync";
+        ExecStart = "${nix_config_path}/config/scripts/dotfiles_sync";
         StandardOutput = "journal";
         StandardError = "journal";
       };
