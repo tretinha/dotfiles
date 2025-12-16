@@ -30,6 +30,7 @@
     ripgrep
     git
     wget
+    sops
   ];
 
   # Git configuration (common across all systems)

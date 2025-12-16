@@ -80,7 +80,7 @@ def load_secrets():
     """Decrypts and loads the secrets.json file using SOPS."""
     try:
         result = subprocess.run(
-            ['/home/gustavo/bin/sops', '--decrypt', SECRETS_FILE],
+            ['sops', '--decrypt', SECRETS_FILE],
             capture_output=True,
             text=True,
             check=True
