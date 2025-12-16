@@ -1,7 +1,12 @@
 # Updated work machine configuration
 # Includes all formatters/linters for global use + glyd-specific overrides
 
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   nix_config_path = "${config.home.homeDirectory}/dotfiles/nix-config";
@@ -10,10 +15,10 @@ let
 in
 {
   # Work-specific configuration for Ubuntu PC
-  
+
   imports = [
-    ../../modules/home/common.nix    # Common settings
-    ../../modules/home/desktop.nix   # Desktop environment
+    ../../modules/home/common.nix # Common settings
+    ../../modules/home/desktop.nix # Desktop environment
   ];
 
   home.username = "gustavo";
@@ -23,73 +28,74 @@ in
   # These are formatters/linters that work EVERYWHERE (not just glyd)
   home.packages = with pkgs; [
     atuin
-    
+
     # === Formatters (work everywhere) ===
     # C/C++
-    clang-tools          # Includes clang-format
-    
+    clang-tools # Includes clang-format
+
     # Python
-    ruff                 # Fast Python linter & formatter
-    black                # Python formatter (backup/alternative)
-    isort                # Python import sorter
-    
+    ruff # Fast Python linter & formatter
+    black # Python formatter (backup/alternative)
+    isort # Python import sorter
+
     # JavaScript/TypeScript/Web
-    nodePackages.prettier        # JS/TS/JSON/YAML/Markdown formatter
-    nodePackages.eslint_d        # Fast ESLint daemon for linting
-    
+    nodePackages.prettier # JS/TS/JSON/YAML/Markdown formatter
+    nodePackages.eslint_d # Fast ESLint daemon for linting
+
     # Shell
-    shfmt                # Shell script formatter
-    shellcheck           # Shell script linter
-    
+    shfmt # Shell script formatter
+    shellcheck # Shell script linter
+
     # Go
-    go                   # Includes gofmt
-    golangci-lint        # Go linter
-    
+    go # Includes gofmt
+    golangci-lint # Go linter
+
     # Terraform/Infrastructure
-    terraform            # Includes terraform fmt
-    tflint               # Terraform linter
-    
+    terraform # Includes terraform fmt
+    tflint # Terraform linter
+
     # Bazel/Starlark
-    buildifier           # Bazel BUILD file formatter
-    
+    buildifier # Bazel BUILD file formatter
+
     # YAML
-    yamllint             # YAML linter
-    
+    yamllint # YAML linter
+
     # Docker
-    hadolint             # Dockerfile linter
-    
+    hadolint # Dockerfile linter
+
     # CMake
-    cmake-format         # CMake file formatter
-    
+    cmake-format # CMake file formatter
+
     # Nix
-    nixfmt-rfc-style     # Already in common.nix, but mentioned for clarity
-    statix               # Nix linter
-    deadnix              # Dead code detector for Nix
-    
+    nixfmt-rfc-style # Already in common.nix, but mentioned for clarity
+    statix # Nix linter
+    deadnix # Dead code detector for Nix
+
     # Markdown
-    marksman             # Markdown LSP
-    
+    marksman # Markdown LSP
+
     # === Language Servers (LSPs) ===
     # Note: Some are installed via Mason in nvim, these are system fallbacks
-    
+
     # Bash/Shell LSP
     nodePackages.bash-language-server
-    
-    # JSON LSP  
-    nodePackages.vscode-langservers-extracted  # Includes jsonls, html, css
-    
+
+    # JSON LSP
+    nodePackages.vscode-langservers-extracted # Includes jsonls, html, css
+
     # YAML LSP
     yaml-language-server
-    
+
     # Terraform LSP
     terraform-ls
-    
+
     # Docker LSP
     nodePackages.dockerfile-language-server-nodejs
-    
+
     # === Additional Development Tools ===
-    jq                   # JSON processor (useful for development)
-    yq                   # YAML processor
+    jq # JSON processor (useful for development)
+    yq # YAML processor
+    opencode
   ];
 
   # Work-specific bash config
@@ -98,11 +104,11 @@ in
       EDITOR = "/home/gustavo/neovim/nvim-linux-x86_64/bin/nvim";
       PATH = "$HOME/bin:$HOME/.local/bin:$HOME/.opencode/bin:$HOME/.cache/glyd/cas/f686e1d39682f5ada2b165e737eb136521f5a519/bin:$PATH";
     };
-    
+
     shellAliases = {
       nvim = "~/neovim/nvim-linux-x86_64/bin/nvim";
       infra = "cd ~/glyd/glyd/infra";
-      
+
       # Handy formatter aliases (can use anywhere)
       fmt-python = "ruff format";
       fmt-shell = "shfmt -i 2 -ci -s -w";
@@ -110,7 +116,7 @@ in
       lint-python = "ruff check";
       lint-shell = "shellcheck";
     };
-    
+
     # Append work-specific setup after common config
     initExtra = lib.mkAfter ''
       # Colored prompt
@@ -119,18 +125,18 @@ in
       else
           PS1='\u@\h:\w\$ '
       fi
-      
+
       # Xterm title
       case "$TERM" in
       xterm*|rxvt*)
           PS1="\[\e]0;\u@\h: \w\a\]$PS1"
           ;;
       esac
-      
+
       # Work-specific setup
       source /home/gustavo/glyd/glyd/dev/env/login-setup.sh 2>/dev/null || true
       source ${nix_config_path}/config/scripts/gl_k_completion.bash 2>/dev/null || true
-      
+
       # Atuin
       . "$HOME/.atuin/bin/env" 2>/dev/null || true
       [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
@@ -150,12 +156,12 @@ in
       source = create_symlink "${nix_xdg_config}/nvim";
       recursive = true;
     };
-    
+
     "openbox" = {
       source = create_symlink "${nix_xdg_config}/openbox";
       recursive = true;
     };
-    
+
     "tint2" = {
       source = create_symlink "${nix_xdg_config}/tint2";
       recursive = true;
@@ -167,12 +173,12 @@ in
     ".themes/rio/openbox-3/themerc" = {
       source = create_symlink "${nix_xdg_config}/themes/rio/openbox-3/themerc";
     };
-    
+
     "Documents/Invoices/invoice.py" = {
       source = ../../config/scripts/invoice.py;
       executable = true;
     };
-    
+
     "Documents/Invoices/secrets.json" = {
       source = ../../config/scripts/secrets.json;
     };
@@ -195,7 +201,7 @@ in
         WantedBy = [ "default.target" ];
       };
     };
-    
+
     invoice-generator = {
       Unit = {
         Description = "Monthly Invoice Generator";
@@ -227,7 +233,7 @@ in
         WantedBy = [ "timers.target" ];
       };
     };
-    
+
     invoice-generator = {
       Unit = {
         Description = "Runs invoice-generator on the last day of the month";

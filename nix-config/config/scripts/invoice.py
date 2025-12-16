@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 import datetime
-import subprocess
-import os
 import json
-import requests
+import os
 import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import subprocess
 from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+import requests
 from jinja2 import Environment, FileSystemLoader, Template
 from weasyprint import HTML
 
