@@ -20,6 +20,7 @@ COMPANY_HOLIDAYS = [
     datetime.date(2026, 1, 1)
 ]
 
+
 def send_invoice_email(subject, body, sender_email, recipient_email, smtp_server, smtp_port, smtp_username, smtp_password, attachment_path=None):
     msg = MIMEMultipart()
     msg['From'] = sender_email
