@@ -25,14 +25,14 @@
               steam = {
                 updater.splash = "vendor";
                 enable = true;
-	      # Commenting this out because I'm currently not interested in
-	      # logging directly to big picture
+                # Commenting this out because I'm currently not interested in
+                # logging directly to big picture
                 # autoStart = true;
                 user = "gustavo";
                 desktopSession = "plasma";
               };
-	      # Commenting this out because I'm currently not interested in
-	      # logging directly to big picture
+              # Commenting this out because I'm currently not interested in
+              # logging directly to big picture
               # steamos = {
               #   useSteamOSConfig = true;
               # };
