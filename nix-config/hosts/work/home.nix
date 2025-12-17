@@ -47,16 +47,6 @@ in
     xournalpp
     _1password-gui # 1Password GUI
 
-    # === Window Manager & Desktop Environment ===
-    openbox
-    obconf
-    tint2
-    picom
-    lxqt.lxqt-policykit # Replaces lxpolkit
-    pasystray
-    pavucontrol
-    xfce.xfce4-power-manager
-    xcape
     caffeine-ng # Replaces caffeine
     blueman
   ];
