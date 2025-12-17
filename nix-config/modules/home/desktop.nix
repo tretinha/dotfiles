@@ -4,20 +4,11 @@
   # Desktop environment packages and configs
   # Only import this on systems with a GUI
   
+  # Desktop environment - only universal GUI utilities
+  # Window managers and work-specific apps moved to host configs
   home.packages = with pkgs; [
-    # Window manager and desktop
-    openbox
-    picom
-    tint2
-    lxqt.lxqt-policykit
-    
-    # Screenshot and utilities
-    xclip
+    # Screenshot utilities (used on both systems)
     scrot
-    flameshot
-    
-    # GUI apps
-    _1password-gui
   ];
 
   # Tmux configuration
