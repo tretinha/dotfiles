@@ -8,7 +8,7 @@
 {
   # Common settings for ALL systems (NixOS and non-NixOS)
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

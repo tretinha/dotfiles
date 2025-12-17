@@ -93,7 +93,7 @@ If you prefer manual installation:
 3. Activate home-manager:
    ```bash
    cd ~/dotfiles/nix-config
-   nix run home-manager/release-25.05 -- switch --flake .#gustavo@work
+   nix run home-manager/release-25.11 -- switch --flake .#gustavo@work
    ```
 
 ## Updating Configuration

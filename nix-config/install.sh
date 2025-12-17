@@ -26,7 +26,7 @@ echo "→ Activating home-manager configuration..."
 cd ~/dotfiles/nix-config
 
 # Run home-manager switch
-nix run home-manager/release-25.05 -- switch --flake .#gustavo@work
+nix run home-manager/release-25.11 -- switch --flake .#gustavo@work
 
 echo
 echo "✓ Home-manager configuration activated!"
