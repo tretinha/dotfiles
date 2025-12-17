@@ -8,8 +8,7 @@ in
   # Gaming PC configuration (NixOS system)
 
   imports = [
-    ../../modules/home/common.nix # Common settings
-    ../../modules/home/desktop.nix # Desktop environment
+    ../../modules/home/common.nix
   ];
 
   home.username = "gustavo";
@@ -19,9 +18,6 @@ in
     discord
   ];
 
-  # Gaming-specific configs can go here
-
-  # Symlink nvim config
   xdg.configFile = {
     "nvim" = {
       source = create_symlink "${nix_xdg_config}/nvim/";

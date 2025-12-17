@@ -1,6 +1,3 @@
-# Updated work machine configuration
-# Includes all formatters/linters for global use + glyd-specific overrides
-
 {
   config,
   pkgs,
@@ -14,44 +11,28 @@ let
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 in
 {
-  # Work-specific configuration for Ubuntu PC
-
   imports = [
-    ../../modules/home/common.nix # Common settings
-    ../../modules/home/desktop.nix # Desktop environment
+    ../../modules/home/common.nix
   ];
 
   home.username = "gustavo";
   home.homeDirectory = "/home/gustavo";
 
-  # Additional work-specific packages
-  # These are formatters/linters that work EVERYWHERE (not just glyd)
   home.packages = with pkgs; [
-    atuin
-    opencode
-
-    # === CLI Tools ===
-    # Note: git, ripgrep, fzf, htop, wget are in common.nix
     git-lfs
     tmux
     tree
     btop
-    xclip
-    zsh
-
-    # === Desktop/GUI Applications ===
+    atuin
+    opencode
     flameshot
     feh
     arandr
-    dconf-editor
     xournalpp
-    _1password-gui # 1Password GUI
-
-    caffeine-ng # Replaces caffeine
-    blueman
+    _1password-gui
+    caffeine-ng
   ];
 
-  # Work-specific bash config
   programs.bash = {
     sessionVariables = {
       EDITOR = "nvim";
@@ -60,8 +41,6 @@ in
 
     shellAliases = {
       infra = "cd ~/glyd/glyd/infra";
-
-      # Handy formatter aliases (can use anywhere)
       fmt-python = "ruff format";
       fmt-shell = "shfmt -i 2 -ci -s -w";
       fmt-json = "prettier --write";
@@ -71,21 +50,6 @@ in
 
     # Append work-specific setup after common config
     initExtra = lib.mkAfter ''
-      # Colored prompt
-      if [ "$TERM" = "xterm-color" ] || [ "$TERM" = "*-256color" ]; then
-          PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-      else
-          PS1='\u@\h:\w\$ '
-      fi
-
-      # Xterm title
-      case "$TERM" in
-      xterm*|rxvt*)
-          PS1="\[\e]0;\u@\h: \w\a\]$PS1"
-          ;;
-      esac
-
-      # Work-specific setup
       source /home/gustavo/glyd/glyd/dev/env/login-setup.sh 2>/dev/null || true
       source ${nix_config_path}/config/scripts/gl_k_completion.bash 2>/dev/null || true
 
@@ -96,7 +60,6 @@ in
     '';
   };
 
-  # Atuin configuration
   programs.atuin = {
     enable = true;
     enableBashIntegration = true;
@@ -109,28 +72,13 @@ in
       recursive = true;
     };
 
-    "openbox" = {
-      source = create_symlink "${nix_xdg_config}/openbox";
-      recursive = true;
-    };
-
     "opencode" = {
       source = create_symlink "${nix_xdg_config}/opencode";
       recursive = true;
     };
-
-    "tint2" = {
-      source = create_symlink "${nix_xdg_config}/tint2";
-      recursive = true;
-    };
   };
 
-  # Home files
   home.file = {
-    ".themes/rio/openbox-3/themerc" = {
-      source = create_symlink "${nix_xdg_config}/themes/rio/openbox-3/themerc";
-    };
-
     "Documents/Invoices/invoice.py" = {
       source = ../../config/scripts/invoice.py;
       executable = true;
@@ -141,7 +89,6 @@ in
     };
   };
 
-  # Systemd user services
   systemd.user.services = {
     dotfiles-sync = {
       Unit = {

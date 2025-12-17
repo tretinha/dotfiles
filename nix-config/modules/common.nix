@@ -26,7 +26,6 @@
     options = "--delete-older-than 7d";
   };
 
-  # common packages
   environment.systemPackages = with pkgs; [
     gcc
     fzf

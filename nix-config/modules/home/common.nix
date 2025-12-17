@@ -10,7 +10,6 @@
 
   home.stateVersion = "25.11";
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Use regular Nix package from nixpkgs
@@ -37,104 +36,62 @@
     ];
   };
 
-  # Common packages for all systems
   home.packages = with pkgs; [
-    # Nix tooling
     nixfmt-rfc-style
     home-manager
     statix # Nix linter
     deadnix # Dead code detector for Nix
-
     htop
     fzf
     ripgrep
     git
     wget
     sops
-
     neovim
     atuin
 
     # === Formatters (work everywhere) ===
-    # C/C++
-    clang-tools # Includes clang-format
-
-    # Python
-    ruff # Fast Python linter & formatter
-    black # Python formatter (backup/alternative)
-    isort # Python import sorter
-
-    # JavaScript/TypeScript/Web
-    nodePackages.prettier # JS/TS/JSON/YAML/Markdown formatter
-    nodePackages.eslint_d # Fast ESLint daemon for linting
-
-    # Shell
-    shfmt # Shell script formatter
-    shellcheck # Shell script linter
-
-    # Go
-    go # Includes gofmt
-    golangci-lint # Go linter
-
-    # Terraform/Infrastructure
-    terraform # Includes terraform fmt
-    tflint # Terraform linter
-
-    # Bazel/Starlark
-    buildifier # Bazel BUILD file formatter
-
-    # YAML
-    yamllint # YAML linter
-
-    # Docker
-    hadolint # Dockerfile linter
-
-    # CMake
-    cmake-format # CMake file formatter
-
-    # Markdown
-    marksman # Markdown LSP
+    clang-tools
+    ruff
+    black
+    isort
+    nodePackages.prettier
+    nodePackages.eslint_d
+    shfmt
+    shellcheck
+    go
+    golangci-lint
+    terraform
+    tflint
+    buildifier
+    yamllint
+    hadolint
+    cmake-format
+    marksman
 
     # === Language Servers (LSPs) ===
     # Note: Some are installed via Mason in nvim, these are system fallbacks
-
-    # Bash/Shell LSP
     nodePackages.bash-language-server
-
-    # JSON LSP
     nodePackages.vscode-langservers-extracted # Includes jsonls, html, css
-
-    # YAML LSP
     yaml-language-server
-
-    # Terraform LSP
     terraform-ls
-
-    # Docker LSP
     nodePackages.dockerfile-language-server-nodejs
 
     # === Additional Development Tools ===
-    jq # JSON processor (useful for development)
-    yq # YAML processor
-
+    jq
+    yq
     opencode
 
     # === Mason Dependencies ===
     # Required for Mason to install LSP servers and tools
-    nodejs # npm for Node.js-based LSP servers
-    unzip # For downloading and extracting binaries
-    go # For Go-based LSP servers
+    nodejs
+    unzip
   ];
 
-  # Git configuration (common across all systems)
   programs.git = {
     enable = true;
-    # Hosts can override these:
-    # userName = "Gustavo";
-    # userEmail = "your.email@example.com";
   };
 
-  # Bash configuration (common baseline)
   programs.bash = {
     enable = true;
     historyControl = [ "ignoreboth" ];
@@ -147,7 +104,6 @@
     ];
 
     shellAliases = {
-      # Common aliases
       ll = "ls -alF";
       la = "ls -A";
       l = "ls -CF";
@@ -172,9 +128,30 @@
     '';
   };
 
-  # FZF
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
+  };
+
+  programs.tmux = {
+    enable = true;
+    terminal = "tmux-256color";
+    keyMode = "vi";
+    customPaneNavigationAndResize = true;
+    prefix = "C-a";
+
+    extraConfig = ''
+      set -ga terminal-overrides ",*256col*:Tc"
+
+      # Vi mode copy
+      bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -sel clip -i'
+
+      # Disable automatic window renaming
+      set-option -g allow-rename off
+
+      # Status bar styling
+      set -g status-position bottom
+      set -g status-style "bg=#FFFFEC,fg=#57864E"
+    '';
   };
 }
