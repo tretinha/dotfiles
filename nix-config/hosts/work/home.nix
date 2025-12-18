@@ -25,6 +25,7 @@ in
     caffeine-ng
     atuin
     wl-clipboard
+    gnome-tweaks
   ];
 
   programs.bash = {
