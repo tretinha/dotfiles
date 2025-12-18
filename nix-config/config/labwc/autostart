@@ -1,16 +1,21 @@
 #!/bin/bash
 
+# Log autostart execution
+echo "$(date): labwc autostart running" >> /tmp/labwc-autostart.log
+
 # Panel/bar (replacing tint2)
-waybar &
+waybar >> /tmp/waybar.log 2>&1 &
 
 # Notification daemon
-mako &
+mako >> /tmp/mako.log 2>&1 &
 
-# Background
-swaybg -i ~/Pictures/GLYDWAYS.JPG -m fill &
+# Background (if image exists)
+if [ -f ~/Pictures/GLYDWAYS.JPG ]; then
+    swaybg -i ~/Pictures/GLYDWAYS.JPG -m fill &
+fi
 
 # 1Password
 1password &
 
-# PolicyKit agent
-lxqt-policykit-agent &
+# PolicyKit agent (use GNOME's instead)
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
