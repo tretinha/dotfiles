@@ -25,6 +25,7 @@ in
     _1password-gui
     caffeine-ng
     atuin
+    wl-clipboard
   ];
 
   programs.bash = {
