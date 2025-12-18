@@ -26,6 +26,9 @@ in
     atuin
     wl-clipboard
     gnome-tweaks
+    gnomeExtensions.user-themes     # Allows custom shell themes
+    gnomeExtensions.just-perfection # Customize GNOME UI elements
+    # gnomeExtensions.pixel-saver     # Hide title bars
   ];
 
   programs.bash = {
