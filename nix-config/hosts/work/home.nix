@@ -9,6 +9,14 @@ let
   nix_config_path = "${config.home.homeDirectory}/dotfiles/nix-config";
   nix_xdg_config = "${nix_config_path}/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+  
+  # Import nixGL
+  nixgl = import (pkgs.fetchFromGitHub {
+    owner = "nix-community";
+    repo = "nixGL";
+    rev = "b6105297e6f0cd041670c3e8628394d4ee247ed5";
+    sha256 = "1zv3bshk0l4hfh1s7s3jzwjxl0nqqcvc4a3kydd3d4lgh7651d3x";
+  }) { inherit pkgs; };
 in
 {
   imports = [
@@ -18,7 +26,7 @@ in
   home.username = "gustavo";
   home.homeDirectory = "/home/gustavo";
 
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     opencode
     xournalpp
     _1password-gui
@@ -44,6 +52,9 @@ in
     grim        # Screenshot utility
     slurp       # Region selector
     swappy      # Screenshot editor (optional, like flameshot's editor)
+  ]) ++ [
+    # NixGL wrapper for NVIDIA 580.95.05 - use latest stable from nixpkgs
+    (nixgl.nixGLIntel)  # Fallback to Intel for now until we get NVIDIA working
   ];
 
   programs.bash = {
