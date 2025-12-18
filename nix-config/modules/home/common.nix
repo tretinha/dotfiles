@@ -7,9 +7,7 @@
 
 {
   # Common settings for ALL systems (NixOS and non-NixOS)
-
   home.stateVersion = "25.11";
-
   nixpkgs.config.allowUnfree = true;
 
   # Use regular Nix package from nixpkgs
@@ -39,53 +37,22 @@
   home.packages = with pkgs; [
     nixfmt-rfc-style
     home-manager
-    statix # Nix linter
-    deadnix # Dead code detector for Nix
     htop
     fzf
     ripgrep
     git
+    git-lfs
     wget
     sops
     neovim
-    atuin
-
-    # === Formatters (work everywhere) ===
-    clang-tools
-    ruff
-    black
-    isort
-    nodePackages.prettier
-    nodePackages.eslint_d
-    shfmt
-    shellcheck
     go
-    golangci-lint
     terraform
-    tflint
-    buildifier
-    yamllint
-    hadolint
-    cmake-format
-    marksman
-
-    # === Language Servers (LSPs) ===
-    # Note: Some are installed via Mason in nvim, these are system fallbacks
-    nodePackages.bash-language-server
-    nodePackages.vscode-langservers-extracted # Includes jsonls, html, css
-    yaml-language-server
-    terraform-ls
-    nodePackages.dockerfile-language-server-nodejs
-
-    # === Additional Development Tools ===
     jq
     yq
-    opencode
-
-    # === Mason Dependencies ===
-    # Required for Mason to install LSP servers and tools
     nodejs
     unzip
+    tree
+    btop
   ];
 
   programs.git = {

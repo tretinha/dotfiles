@@ -19,18 +19,12 @@ in
   home.homeDirectory = "/home/gustavo";
 
   home.packages = with pkgs; [
-    git-lfs
-    tmux
-    tree
-    btop
-    atuin
     opencode
     flameshot
-    feh
-    arandr
     xournalpp
     _1password-gui
     caffeine-ng
+    atuin
   ];
 
   programs.bash = {
