@@ -28,7 +28,8 @@ in
     
     # labwc window manager and utilities
     labwc
-    wlr-randr  # Display configuration tool for wlroots
+    wlr-randr  # Display configuration tool for wlroots (CLI)
+    wdisplays  # Display configuration GUI (like arandr)
     
     # xdg-desktop-portal-wlr for screen sharing (Ubuntu has base portal)
     xdg-desktop-portal-wlr
