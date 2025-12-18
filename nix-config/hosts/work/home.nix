@@ -43,7 +43,7 @@ in
     xdg-desktop-portal-wlr
     
     # Wayland utilities (some may be in Ubuntu, but nix versions won't conflict)
-    waybar      # Status bar
+    sfwbar      # Panel with taskbar for wlroots compositors
     wofi        # Application launcher
     mako        # Notification daemon
     swaybg      # Background setter

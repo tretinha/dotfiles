@@ -3,8 +3,12 @@
 # Log autostart execution
 echo "$(date): labwc autostart running" >> /tmp/labwc-autostart.log
 
-# Panel/bar (replacing tint2)
-waybar >> /tmp/waybar.log 2>&1 &
+# Start portals for screen sharing FIRST
+/home/gustavo/.nix-profile/bin/xdg-desktop-portal-wlr &
+sleep 1
+
+# Panel/bar - sfwbar (has taskbar and app menu)
+sfwbar >> /tmp/sfwbar.log 2>&1 &
 
 # Notification daemon
 mako >> /tmp/mako.log 2>&1 &
