@@ -9,14 +9,6 @@ let
   nix_config_path = "${config.home.homeDirectory}/dotfiles/nix-config";
   nix_xdg_config = "${nix_config_path}/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-  
-  # Import nixGL
-  nixgl = import (pkgs.fetchFromGitHub {
-    owner = "nix-community";
-    repo = "nixGL";
-    rev = "b6105297e6f0cd041670c3e8628394d4ee247ed5";
-    sha256 = "1zv3bshk0l4hfh1s7s3jzwjxl0nqqcvc4a3kydd3d4lgh7651d3x";
-  }) { inherit pkgs; };
 in
 {
   imports = [
@@ -26,35 +18,13 @@ in
   home.username = "gustavo";
   home.homeDirectory = "/home/gustavo";
 
-  home.packages = (with pkgs; [
+  home.packages = with pkgs; [
     opencode
     xournalpp
     _1password-gui
     caffeine-ng
     atuin
     wl-clipboard
-    
-    # labwc window manager and utilities
-    labwc
-    wlr-randr  # Display configuration tool for wlroots (CLI)
-    wdisplays  # Display configuration GUI (like arandr)
-    
-    # xdg-desktop-portal-wlr for screen sharing (Ubuntu has base portal)
-    xdg-desktop-portal-wlr
-    
-    # Wayland utilities (some may be in Ubuntu, but nix versions won't conflict)
-    sfwbar      # Panel with taskbar for wlroots compositors
-    wofi        # Application launcher
-    mako        # Notification daemon
-    swaybg      # Background setter
-    
-    # Wayland screenshot tools (replacing flameshot)
-    grim        # Screenshot utility
-    slurp       # Region selector
-    swappy      # Screenshot editor (optional, like flameshot's editor)
-  ]) ++ [
-    # NixGL wrapper for NVIDIA 580.95.05 - use latest stable from nixpkgs
-    (nixgl.nixGLIntel)  # Fallback to Intel for now until we get NVIDIA working
   ];
 
   programs.bash = {
@@ -95,24 +65,6 @@ in
       source = create_symlink "${nix_xdg_config}/opencode";
       recursive = true;
     };
-    
-    "labwc" = {
-      source = create_symlink "${nix_xdg_config}/labwc";
-      recursive = true;
-    };
-    
-    "waybar" = {
-      source = create_symlink "${nix_xdg_config}/waybar";
-      recursive = true;
-    };
-    
-    # Portal configuration for screen sharing
-    "xdg-desktop-portal/portals.conf".text = ''
-      [preferred]
-      default=gtk
-      org.freedesktop.impl.portal.ScreenCast=wlr
-      org.freedesktop.impl.portal.Screenshot=wlr
-    '';
   };
 
   home.file = {
