@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=labwc
+Comment=Stacking Wayland compositor with openbox-like configuration
+Exec=/home/gustavo/.local/bin/labwc-wrapper
+Type=Application
+DesktopNames=wlroots

@@ -1,0 +1,35 @@
+* {
+    font-family: sans-serif;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: rgba(43, 48, 59, 0.9);
+    color: #ffffff;
+}
+
+#custom-menu,
+#workspaces button,
+#clock,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#battery,
+#tray {
+    padding: 0 10px;
+}
+
+#workspaces button {
+    border: none;
+    color: #ffffff;
+}
+
+#workspaces button.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#custom-menu {
+    background-color: #57864E;
+    font-weight: bold;
+}

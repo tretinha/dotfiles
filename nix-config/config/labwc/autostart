@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Panel/bar (replacing tint2)
+waybar &
+
+# Notification daemon
+mako &
+
+# Background
+swaybg -i ~/Pictures/GLYDWAYS.JPG -m fill &
+
+# 1Password
+1password &
+
+# PolicyKit agent
+lxqt-policykit-agent &
