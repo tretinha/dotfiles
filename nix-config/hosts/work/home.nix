@@ -20,12 +20,29 @@ in
 
   home.packages = with pkgs; [
     opencode
-    flameshot
     xournalpp
     _1password-gui
     caffeine-ng
     atuin
     wl-clipboard
+    
+    # labwc window manager and utilities
+    labwc
+    wlr-randr  # Display configuration tool for wlroots
+    
+    # xdg-desktop-portal-wlr for screen sharing (Ubuntu has base portal)
+    xdg-desktop-portal-wlr
+    
+    # Wayland utilities (some may be in Ubuntu, but nix versions won't conflict)
+    waybar      # Status bar
+    wofi        # Application launcher
+    mako        # Notification daemon
+    swaybg      # Background setter
+    
+    # Wayland screenshot tools (replacing flameshot)
+    grim        # Screenshot utility
+    slurp       # Region selector
+    swappy      # Screenshot editor (optional, like flameshot's editor)
   ];
 
   programs.bash = {
@@ -66,6 +83,24 @@ in
       source = create_symlink "${nix_xdg_config}/opencode";
       recursive = true;
     };
+    
+    "labwc" = {
+      source = create_symlink "${nix_xdg_config}/labwc";
+      recursive = true;
+    };
+    
+    "waybar" = {
+      source = create_symlink "${nix_xdg_config}/waybar";
+      recursive = true;
+    };
+    
+    # Portal configuration for screen sharing
+    "xdg-desktop-portal/portals.conf".text = ''
+      [preferred]
+      default=gtk
+      org.freedesktop.impl.portal.ScreenCast=wlr
+      org.freedesktop.impl.portal.Screenshot=wlr
+    '';
   };
 
   home.file = {
