@@ -26,6 +26,7 @@ in
     atuin
     wl-clipboard
     gnome-tweaks
+    arandr
   ];
 
   programs.bash = {
