@@ -36,11 +36,6 @@ in
 
     shellAliases = {
       infra = "cd ~/glyd/glyd/infra";
-      fmt-python = "ruff format";
-      fmt-shell = "shfmt -i 2 -ci -s -w";
-      fmt-json = "prettier --write";
-      lint-python = "ruff check";
-      lint-shell = "shellcheck";
     };
 
     # Append work-specific setup after common config

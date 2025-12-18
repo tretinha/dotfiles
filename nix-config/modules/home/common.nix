@@ -111,7 +111,7 @@
       set -ga terminal-overrides ",*256col*:Tc"
 
       # Vi mode copy
-      bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -sel clip -i'
+      bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
 
       # Disable automatic window renaming
       set-option -g allow-rename off
