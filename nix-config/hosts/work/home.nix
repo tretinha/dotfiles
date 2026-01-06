@@ -27,7 +27,6 @@ in
     wl-clipboard
     gnome-tweaks
     pavucontrol
-    foot
   ];
 
   programs.bash = {
