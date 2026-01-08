@@ -217,6 +217,41 @@ in
     };
   };
 
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      general = {
+        no_fade_in = false;
+        grace = 0;
+        disable_loading_bar = true;
+      };
+
+      background = [
+        {
+          path = "screenshot"; # Uses a blurred screenshot of your screen
+          blur_passes = 3;
+          blur_size = 8;
+        }
+      ];
+
+      input-field = [
+        {
+          size = "200, 50";
+          position = "0, -80";
+          monitor = "";
+          dots_center = true;
+          fade_on_empty = false;
+          font_color = "rgb(202, 211, 245)";
+          inner_color = "rgb(91, 96, 120)";
+          outer_color = "rgb(24, 25, 38)";
+          outline_thickness = 5;
+          placeholder_text = "Password...";
+          shadow_passes = 2;
+        }
+      ];
+    };
+  };
+
   programs.niri = {
     enable = true;
     settings = {
