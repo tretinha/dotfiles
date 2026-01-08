@@ -39,6 +39,10 @@ in
     rofi
     hyprlock
     waybar
+    font-awesome
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka
+    nerd-fonts.zed-mono
   ];
 
   programs.niri = {
