@@ -173,7 +173,7 @@ in
           "format" = " {volume}%";
           "max-volume" = 100;
           "scroll-step" = 5;
-          on-click = "${pkgs.pwvucontrol}/bin/pwvucontrol";
+          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
 
         # my custom modules
