@@ -36,7 +36,6 @@ in
     wl-clipboard
     gnome-tweaks
     pavucontrol
-    pwvucontrol
     alacritty
     rofi
     hyprlock
@@ -57,7 +56,6 @@ in
         height = 26;
 
         modules-left = [
-          "clock"
           "disk"
           "temperature"
           "memory"
@@ -73,6 +71,7 @@ in
           "network"
           "wireplumber"
           "battery"
+          "clock"
         ];
 
         battery = {
@@ -81,7 +80,7 @@ in
             warning = 30;
             critical = 15;
           };
-          format = "{icon} {capacity}%";
+          format = "{icon}  {capacity}%";
           format-icons = [
             ""
             ""
@@ -406,19 +405,19 @@ in
 
         # multimedia keys
         "XF86AudioRaiseVolume" = {
-          action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+";
+          action = spawn-sh "pactl set-volume @DEFAULT_AUDIO_SINK@ 0.1+";
           allow-when-locked = true;
         };
         "XF86AudioLowerVolume" = {
-          action = spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+          action = spawn-sh "pactl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
           allow-when-locked = true;
         };
         "XF86AudioMute" = {
-          action = spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          action = spawn-sh "pactl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           allow-when-locked = true;
         };
         "XF86AudioMicMute" = {
-          action = spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+          action = spawn-sh "pactl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
           allow-when-locked = true;
         };
         "XF86MonBrightnessUp" = {
