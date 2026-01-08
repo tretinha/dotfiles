@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 
@@ -48,13 +49,7 @@ in
     slack
   ];
 
-  programs.zen-browser = let
-    # extensions: https://github.com/0xc000022070/zen-browser-flake?tab=readme-ov-file#extensions
-    mkExtensionSettings = builtins.mapAttrs (_: pluginId: {
-      install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
-      installation_mode = "force_installed";
-    });
-  in {
+  programs.zen-browser = {
     enable = true;
     # Enabled Zen Mods:
     # - Animations Plus
@@ -65,11 +60,11 @@ in
     # - No Gaps
     # - SuperPins
 
-    policies = {
-      ExtensionSettings = mkExtensionSettings {
-        "null" = "1password-x-password-manager";
-      };
-    };
+    # policies = {
+    #   ExtensionSettings = mkExtensionSettings {
+    #     "null" = "1password-x-password-manager";
+    #   };
+    # };
 
     profiles."default" = {
       containersForce = true;
@@ -89,6 +84,9 @@ in
           position = 2000;
         };
       };
+      extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
+        ublock-origin
+      ];
     };
   };
 
