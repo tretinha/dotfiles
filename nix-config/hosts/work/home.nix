@@ -72,12 +72,8 @@ in
       extensions.packages = [
         pkgs.firefox-addons.ublock-origin
         pkgs.firefox-addons.onepassword-password-manager
-        # Manually fetch Glean since it's not in the nur-expressions repo
-        (pkgs.fetchFirefoxAddon {
-          name = "glean";
-          url = "https://addons.mozilla.org/firefox/downloads/latest/glean/latest.xpi";
-          hash = "sha256-0UA/u9EzfndHuJwSrPzRzfLc5TzB0ZkEWDk0WwVKqnc="; 
-        })
+        # glean extension had to be manually installed since apparently it's
+        # not available in the nur repo
       ];
     };
   };
