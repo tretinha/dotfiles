@@ -45,6 +45,7 @@ in
     nerd-fonts.jetbrains-mono
     nerd-fonts.iosevka
     nerd-fonts.zed-mono
+    blueman
   ];
 
   programs.waybar = {
