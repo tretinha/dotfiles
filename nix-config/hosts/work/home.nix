@@ -29,6 +29,10 @@ in
     pavucontrol
   ];
 
+  programs.niri = {
+    enable = true;
+  };
+
   programs.bash = {
     sessionVariables = {
       EDITOR = "nvim";

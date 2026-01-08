@@ -35,7 +35,7 @@
   };
 
   home.packages = with pkgs; [
-    nixfmt-rfc-style
+    nixfmt
     home-manager
     htop
     fzf

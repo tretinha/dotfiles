@@ -10,7 +10,8 @@
         extraSpecialArgs = {
           inherit inputs;
         };
-        modules = [
+        modules = with inputs; [
+          niri.homeModules.niri
           ./hosts/work/home.nix
         ];
       };
