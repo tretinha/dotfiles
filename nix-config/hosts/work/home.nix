@@ -51,21 +51,6 @@ in
 
   programs.zen-browser = {
     enable = true;
-    # Enabled Zen Mods:
-    # - Animations Plus
-    # - Better Active Tab
-    # - Better Unloaded Tabs
-    # - Cleaned URL bar
-    # - Lean
-    # - No Gaps
-    # - SuperPins
-
-    # policies = {
-    #   ExtensionSettings = mkExtensionSettings {
-    #     "null" = "1password-x-password-manager";
-    #   };
-    # };
-
     profiles."default" = {
       containersForce = true;
       containers = {
@@ -87,6 +72,12 @@ in
       extensions.packages = [
         pkgs.firefox-addons.ublock-origin
         pkgs.firefox-addons.onepassword-password-manager
+        # Manually fetch Glean since it's not in the nur-expressions repo
+        (pkgs.fetchFirefoxAddon {
+          name = "glean";
+          url = "https://addons.mozilla.org/firefox/downloads/latest/glean/latest.xpi";
+          hash = "sha256-0UA/u9EzfndHuJwSrPzRzfLc5TzB0ZkEWDk0WwVKqnc="; 
+        })
       ];
     };
   };
