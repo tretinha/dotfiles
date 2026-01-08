@@ -23,6 +23,7 @@ in
     gpu.enable = true;
   };
 
+  fonts.fontconfig.enable = true;
   home.username = "gustavo";
   home.homeDirectory = "/home/gustavo";
 
@@ -60,7 +61,7 @@ in
         keyboard = {
           xkb = {
             layout = "us";
-            variant = "intl";
+            # variant = "intl";
           };
         };
         # Focus windows and outputs automatically when moving the mouse into them.
@@ -118,7 +119,6 @@ in
           # block certain windows from showing up when sharing screen
           matches = [
             {app-id = "1Password";}
-            {app-id = "Bitwarden";}
           ];
           block-out-from = "screencast";
         }
@@ -151,6 +151,7 @@ in
 
       spawn-at-startup = [
         {argv = ["waybar"];}
+        {argv = ["1Password"];}
       ];
 
       binds = with config.lib.niri.actions; let
@@ -174,7 +175,7 @@ in
         };
         "Ctrl+Alt+L" = {
           action = spawn "${lockscreen}";
-          hotkey-overlay.title = "Lock the Screen: swaylock";
+          hotkey-overlay.title = "Lock the Screen: hyprlock";
         };
         "Mod+Shift+P" = {
           action = power-off-monitors;
