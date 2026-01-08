@@ -32,6 +32,7 @@ in
     wl-clipboard
     gnome-tweaks
     pavucontrol
+    alacritty
   ];
 
   programs.niri = {
