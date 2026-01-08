@@ -15,6 +15,11 @@ in
     ../../modules/home/common.nix
   ];
 
+  targets.genericLinux = {
+    enable = true;
+    gpu.enable = true;
+  };
+
   home.username = "gustavo";
   home.homeDirectory = "/home/gustavo";
 
