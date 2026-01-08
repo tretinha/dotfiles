@@ -45,6 +45,7 @@ in
     nerd-fonts.iosevka
     nerd-fonts.zed-mono
     blueman
+    slack
   ];
 
   programs.waybar = {
