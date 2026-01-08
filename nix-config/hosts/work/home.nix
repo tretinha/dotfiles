@@ -201,7 +201,7 @@ in
         };
 
         wireplumber = {
-          "format" = " {volume}%";
+          "format" = "  {volume}%";
           "max-volume" = 100;
           "scroll-step" = 5;
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
