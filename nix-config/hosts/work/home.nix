@@ -84,8 +84,9 @@ in
           position = 2000;
         };
       };
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
-        ublock-origin
+      extensions.packages = [
+        pkgs.firefox-addons.ublock-origin
+        pkgs.firefox-addons.onepassword-password-manager
       ];
     };
   };
