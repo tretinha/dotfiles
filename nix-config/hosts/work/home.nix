@@ -203,8 +203,8 @@ in
             layout = "us";
             # variant = "intl";
           };
-          repeat-delay = 200;
-          repeat-rate = 30;
+          repeat-delay = 150;
+          repeat-rate = 40;
         };
         # Focus windows and outputs automatically when moving the mouse into them.
         # Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
