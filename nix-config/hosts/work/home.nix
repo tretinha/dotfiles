@@ -508,6 +508,10 @@ in
     };
   };
 
+  home.sessionVariables = {
+    BROWSER = "zen";
+  };
+
   programs.bash = {
     sessionVariables = {
       EDITOR = "nvim";
