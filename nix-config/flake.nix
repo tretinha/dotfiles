@@ -47,21 +47,27 @@
   };
 
   outputs =
-    inputs@{ self, nixpkgs, flake-parts, ... }: let 
+    inputs@{
+      self,
+      nixpkgs,
+      flake-parts,
+      ...
+    }:
+    let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config = {
           allowUnfree = true;
           allowUnfreePredicate = _: true;
+        };
       };
-    };
-    in 
+    in
     flake-parts.lib.mkFlake { inherit inputs; } {
 
       systems = [ system ];
       imports = [
-        ./nixos.nix      # NixOS system configurations (gaming PC)
+        ./nixos.nix # NixOS system configurations (gaming PC)
         ./standalone.nix # Standalone home-manager configs (work PC on Ubuntu)
       ];
       # devShell."${system}" = pkgs.mkShell {
