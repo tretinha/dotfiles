@@ -10,9 +10,6 @@ let
   nix_config_path = "${config.home.homeDirectory}/dotfiles/nix-config";
   nix_xdg_config = "${nix_config_path}/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-  terminal = "alacritty";
-  menu = "rofi -show drun -show-icons";
-  lockscreen = "hyprlock";
 in
 {
   imports = [
@@ -41,8 +38,6 @@ in
     pavucontrol
     alacritty
     rofi
-    hyprlock
-    waybar
     font-awesome
     nerd-fonts.jetbrains-mono
     nerd-fonts.iosevka
