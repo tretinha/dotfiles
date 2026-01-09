@@ -107,7 +107,7 @@
           width = 4;
         };
         border = {
-          enable = true;
+          enable = false;
         };
         shadow = {
           enable = false;
