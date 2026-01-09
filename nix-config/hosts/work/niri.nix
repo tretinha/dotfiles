@@ -145,8 +145,7 @@
             }
           ];
           focus-ring = {
-            # active.color = "#f38ba8";
-            active.color = "#000099";
+            active.color = "#f38ba8";
             inactive.color = "#f38ba8";
           };
           border = {
@@ -154,8 +153,7 @@
             inactive.color = "#f38ba8";
           };
           tab-indicator = {
-            # active.color = "#f38ba8";
-            active.color = "#000099";
+            active.color = "#f38ba8";
             inactive.color = "#7d0d2d";
           };
         }
