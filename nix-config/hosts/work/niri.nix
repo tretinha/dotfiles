@@ -170,7 +170,7 @@ in
         spawn-at-startup = [
           { argv = [ "waybar" ]; }
           { argv = [ "1Password" ]; }
-          { argv = [ "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" ]; }
+          { argv = [ "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors" ]; }
         ];
 
         binds =
