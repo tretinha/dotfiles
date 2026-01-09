@@ -277,7 +277,8 @@
             inactive.color = "#f38ba8";
           };
           tab-indicator = {
-            active.color = "#f38ba8";
+            # active.color = "#f38ba8";
+            active.color = "#000099";
             inactive.color = "#7d0d2d";
           };
         }
