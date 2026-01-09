@@ -45,6 +45,7 @@ in
     nerd-fonts.zed-mono
     blueman
     slack
+    swayidle
   ];
 
   home.sessionVariables = {

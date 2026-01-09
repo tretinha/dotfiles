@@ -58,7 +58,6 @@ in
 
   programs.niri =
     let
-      lockscreen = "hyprlock";
       terminal = "alacritty";
       menu = "rofi -show drun -show-icons";
     in
@@ -171,6 +170,7 @@ in
         spawn-at-startup = [
           { argv = [ "waybar" ]; }
           { argv = [ "1Password" ]; }
+          { argv = [ "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" ]; }
         ];
 
         binds =
@@ -195,10 +195,10 @@ in
               action = spawn-sh "${menu}";
               hotkey-overlay.title = "Run an Application: rofi";
             };
-            "Ctrl+Alt+L" = {
-              action = spawn "${lockscreen}";
-              hotkey-overlay.title = "Lock the Screen: hyprlock";
-            };
+            # "Ctrl+Alt+L" = {
+            #   action = spawn "${lockscreen}";
+            #   hotkey-overlay.title = "Lock the Screen: hyprlock";
+            # };
             "Mod+Shift+P" = {
               action = power-off-monitors;
               hotkey-overlay.title = "Turn off monitors";
