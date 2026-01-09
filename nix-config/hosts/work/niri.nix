@@ -121,7 +121,7 @@
       };
 
       animations = {
-        enable = false;
+        enable = true;
       };
 
       window-rules = [
