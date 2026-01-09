@@ -106,9 +106,9 @@
         focus-ring = {
           width = 4;
         };
-        # border = {
-        #   enable = false;
-        # };
+        border = {
+          enable = true;
+        };
         shadow = {
           enable = false;
         };
