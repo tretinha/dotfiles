@@ -90,6 +90,11 @@ in
       source = create_symlink "${nix_xdg_config}/opencode";
       recursive = true;
     };
+
+    "alacritty" = {
+      source = create_symlink "${nix_xdg_config}/alacritty";
+      recursive = true;
+    };
   };
 
   home.file = {
