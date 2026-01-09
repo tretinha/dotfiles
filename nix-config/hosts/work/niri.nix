@@ -312,7 +312,7 @@ in
             };
 
             # screenshot
-            "Print".action.screenshot = [ ];
+            "XF86Launch5".action.screenshot = [ ];
             "Ctrl+Print".action.screenshot-screen = [ ];
             "Alt+Print".action.screenshot-window = [ ];
 
