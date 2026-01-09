@@ -28,7 +28,7 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon}  {capacity}%",
+        "format": "{icon}{capacity}%",
         "format-icons": [
             "",
             "",
@@ -122,7 +122,7 @@
     },
 
     "wireplumber": {
-        "format": "  {volume}%",
+        "format": " {volume}%",
         "max-volume": 100,
         "scroll-step": 5,
         "on-click": "pavucontrol"
