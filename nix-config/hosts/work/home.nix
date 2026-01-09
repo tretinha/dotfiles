@@ -34,6 +34,7 @@ in
     caffeine-ng
     atuin
     wl-clipboard
+    wdisplays
     gnome-tweaks
     pavucontrol
     alacritty
