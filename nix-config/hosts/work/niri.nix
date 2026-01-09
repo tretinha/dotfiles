@@ -268,7 +268,8 @@
             }
           ];
           focus-ring = {
-            active.color = "#f38ba8";
+            # active.color = "#f38ba8";
+            active.color = "#000099";
             inactive.color = "#f38ba8";
           };
           border = {
