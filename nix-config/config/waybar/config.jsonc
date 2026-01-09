@@ -76,23 +76,24 @@
         }
     },
 
-    "network": {
-        "format": "",
-        "format-ethernet": "󰈀 ",
-        "format-wifi": "{icon}",
-        "format-disconnected": "󰲛 ",
-        "format-icons": [
-            "󰤯 ",
-            "󰤟 ",
-            "󰤢 ",
-            "󰤥 ",
-            "󰤨 "
-        ],
-        "tooltip-format-wifi": "{essid}({signalStrength}%) {ipaddr}",
-        "tooltip-format-ethernet": "{ifname} {ipaddr}",
-        "tooltip-format-disconnected": "Disconnected",
-        "on-click": "nm-connection-editor"
-    },
+    // Apparently I already have a tray icon for NM?
+    // "network": {
+    //     "format": "",
+    //     "format-ethernet": "󰈀 ",
+    //     "format-wifi": "{icon}",
+    //     "format-disconnected": "󰲛 ",
+    //     "format-icons": [
+    //         "󰤯 ",
+    //         "󰤟 ",
+    //         "󰤢 ",
+    //         "󰤥 ",
+    //         "󰤨 "
+    //     ],
+    //     "tooltip-format-wifi": "{essid}({signalStrength}%) {ipaddr}",
+    //     "tooltip-format-ethernet": "{ifname} {ipaddr}",
+    //     "tooltip-format-disconnected": "Disconnected",
+    //     "on-click": "nm-connection-editor"
+    // },
 
     "niri/workspaces": {
         "format": "{icon}",
