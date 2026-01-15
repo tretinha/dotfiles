@@ -46,6 +46,7 @@ in
     blueman
     slack
     swayidle
+    obsidian
   ];
 
   home.sessionVariables = {
