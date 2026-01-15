@@ -47,6 +47,7 @@ in
     slack
     swayidle
     obsidian
+    zoom-us
   ];
 
   home.sessionVariables = {
