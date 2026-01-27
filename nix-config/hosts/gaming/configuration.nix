@@ -91,6 +91,9 @@
     TTYVTDisallocate = true;
   };
 
+  # XWayland for X11 apps (Steam, etc.)
+  programs.xwayland.enable = true;
+
   # AMD GPU - RADV only (best for CS2 on RDNA3)
   hardware.graphics = {
     enable = true;
