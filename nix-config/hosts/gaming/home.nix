@@ -15,12 +15,24 @@ in
   # Enable niri via home-manager
   programs.niri.enable = true;
 
+  # Fonts
+  fonts.fontconfig.enable = true;
+
   home.username = "gustavo";
   home.homeDirectory = "/home/gustavo";
 
   home.packages = with pkgs; [
     discord
-    # niri dependencies
+
+    # Fonts
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.iosevka
+    font-awesome
+    noto-fonts
+    noto-fonts-color-emoji
+    liberation_ttf
+
+    # niri/Wayland dependencies
     alacritty
     rofi
     swayidle
@@ -29,6 +41,11 @@ in
     nerd-fonts.jetbrains-mono
     nerd-fonts.iosevka
     nerd-fonts.zed-mono
+    pavucontrol
+    brightnessctl
+
+    # Networking GUI
+    networkmanagerapplet
   ];
 
   xdg.configFile = {

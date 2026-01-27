@@ -20,9 +20,9 @@
   # XDG portals for Wayland (screen sharing, file dialogs, etc.)
   xdg.portal = {
     enable = true;
+    wlr.enable = true; # For wlroots-based compositors like niri
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
     ];
     config.common.default = "*";
   };
@@ -58,7 +58,29 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "gaming";
-  networking.networkmanager.enable = true;
+
+  # NetworkManager - ensure WiFi works on boot
+  networking.networkmanager = {
+    enable = true;
+    wifi.powersave = false; # Disable power saving for better latency
+  };
+
+  # Ensure NetworkManager starts early and WiFi adapter is up
+  systemd.services.NetworkManager-wait-online.enable = false; # Don't wait, speeds up boot
+
+  # Greetd login manager with tuigreet
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions";
+        user = "greeter";
+      };
+    };
+  };
+
+  # Register niri as a session
+  services.displayManager.sessionPackages = [ pkgs.niri ];
 
   # AMD GPU - RADV only (best for CS2 on RDNA3)
   hardware.graphics = {
@@ -74,8 +96,9 @@
   # AMD 5800X3D optimizations
   hardware.cpu.amd.updateMicrocode = true;
 
-  # Enable firmware
+  # Enable firmware (important for WiFi adapters!)
   hardware.enableRedistributableFirmware = true;
+  hardware.enableAllFirmware = true;
 
   # AMD P-State driver with performance governor
   powerManagement.cpuFreqGovernor = "performance";
@@ -100,6 +123,26 @@
     __GL_YIELD = "NOTHING";
   };
 
+  # System fonts
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+      liberation_ttf
+      fira-code
+      fira-code-symbols
+    ];
+    fontconfig.defaultFonts = {
+      monospace = [
+        "JetBrainsMono Nerd Font"
+        "Fira Code"
+      ];
+      sansSerif = [ "Noto Sans" ];
+      serif = [ "Noto Serif" ];
+    };
+  };
+
   # Gaming packages
   environment.systemPackages = with pkgs; [
     # Vulkan
@@ -117,6 +160,13 @@
     # Gaming utilities
     gamescope
     protonup-qt
+
+    # Networking
+    networkmanagerapplet
+
+    # Basic utilities
+    kitty # Backup terminal
+    foot # Another backup terminal
   ];
 
   # GameMode - CS2 automatically uses it via Steam integration
@@ -196,6 +246,12 @@
     }
   ];
 
+  # Polkit for authentication dialogs
+  security.polkit.enable = true;
+
+  # Enable gnome-keyring for credential storage
+  services.gnome.gnome-keyring.enable = true;
+
   security.rtkit.enable = true;
 
   # PipeWire - low latency for footsteps/audio cues
@@ -205,6 +261,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
+    wireplumber.enable = true;
     extraConfig.pipewire."92-low-latency" = {
       "context.properties" = {
         "default.clock.rate" = 48000;
@@ -225,6 +282,9 @@
 
   services.printing.enable = true;
 
+  # D-Bus (required for many services)
+  services.dbus.enable = true;
+
   users.users = {
     gustavo = {
       isNormalUser = true;
@@ -236,6 +296,7 @@
         "render"
         "gamemode"
         "input"
+        "audio"
       ];
       packages = with pkgs; [
         kdePackages.kate
