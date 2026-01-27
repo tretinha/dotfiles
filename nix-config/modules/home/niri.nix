@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 let
@@ -56,14 +57,13 @@ in
     };
   };
 
-  programs.niri =
-    let
-      terminal = "alacritty";
-      menu = "rofi -show drun -show-icons";
-    in
-    {
-      enable = true;
-      settings = {
+  programs.niri = {
+    settings =
+      let
+        terminal = "alacritty";
+        menu = "rofi -show drun -show-icons";
+      in
+      {
         prefer-no-csd = true;
         hotkey-overlay = {
           skip-at-startup = true;
@@ -170,7 +170,17 @@ in
         spawn-at-startup = [
           { argv = [ "waybar" ]; }
           { argv = [ "1Password" ]; }
-          { argv = [ "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors" ]; }
+          {
+            argv = [
+              "swayidle"
+              "-w"
+              "timeout"
+              "601"
+              "niri msg action power-off-monitors"
+              "resume"
+              "niri msg action power-on-monitors"
+            ];
+          }
         ];
 
         binds =
@@ -340,5 +350,5 @@ in
             "Mod+Tab".action = focus-workspace-previous;
           };
       };
-    };
+  };
 }

@@ -14,9 +14,12 @@ in
 {
   imports = [
     ../../modules/home/common.nix
+    ../../modules/home/niri.nix
     ./zen-browser.nix
-    ./niri.nix
   ];
+
+  # Enable niri via home-manager (standalone, not NixOS)
+  programs.niri.enable = true;
 
   targets.genericLinux = {
     enable = true;
