@@ -15,6 +15,7 @@
   environment.pathsToLink = [
     "/share/applications"
     "/share/xdg-desktop-portal"
+    "/share/wayland-sessions"
   ];
 
   # XDG portals for Wayland (screen sharing, file dialogs, etc.)
@@ -73,14 +74,22 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --remember-session --cmd niri-session";
         user = "greeter";
       };
     };
   };
 
-  # Register niri as a session
-  services.displayManager.sessionPackages = [ pkgs.niri ];
+  # Prevent greetd from showing errors on TTY1
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
+  };
 
   # AMD GPU - RADV only (best for CS2 on RDNA3)
   hardware.graphics = {
@@ -123,23 +132,43 @@
     __GL_YIELD = "NOTHING";
   };
 
-  # System fonts
+  # System fonts - MUST include nerd fonts here for system-wide availability
   fonts = {
     packages = with pkgs; [
+      # Nerd fonts for terminal/waybar icons
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
+      nerd-fonts.iosevka
+      # Standard fonts
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
       liberation_ttf
-      fira-code
-      fira-code-symbols
+      dejavu_fonts
+      ubuntu_font_family
+      font-awesome
+      # Fallback
+      freefont_ttf
+      roboto
     ];
-    fontconfig.defaultFonts = {
-      monospace = [
-        "JetBrainsMono Nerd Font"
-        "Fira Code"
-      ];
-      sansSerif = [ "Noto Sans" ];
-      serif = [ "Noto Serif" ];
+    enableDefaultPackages = true;
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        monospace = [
+          "JetBrainsMono Nerd Font"
+          "DejaVu Sans Mono"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "DejaVu Sans"
+        ];
+        serif = [
+          "Noto Serif"
+          "DejaVu Serif"
+        ];
+        emoji = [ "Noto Color Emoji" ];
+      };
     };
   };
 
@@ -164,9 +193,18 @@
     # Networking
     networkmanagerapplet
 
-    # Basic utilities
-    kitty # Backup terminal
-    foot # Another backup terminal
+    # Wayland/niri essentials (system-level so greetd can find them)
+    waybar
+    alacritty
+    foot
+    rofi-wayland
+    swayidle
+    wl-clipboard
+    brightnessctl
+    pavucontrol
+
+    # Niri itself at system level
+    niri
   ];
 
   # GameMode - CS2 automatically uses it via Steam integration
