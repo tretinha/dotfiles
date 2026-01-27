@@ -15,6 +15,19 @@ in
   # Enable niri via home-manager
   programs.niri.enable = true;
 
+  programs.niri.settings = {
+    outputs = {
+      "HDMI-A-1" = {
+        mode = {
+          width = 2560;
+          height = 1440;
+          refresh = 120.000;
+        };
+        scale = 1;
+      };
+    };
+  };
+
   # Fonts
   fonts.fontconfig.enable = true;
 

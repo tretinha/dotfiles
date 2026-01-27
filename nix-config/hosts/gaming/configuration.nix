@@ -145,7 +145,7 @@
       noto-fonts-color-emoji
       liberation_ttf
       dejavu_fonts
-      ubuntu_font_family
+      ubuntu-classic 
       font-awesome
       # Fallback
       freefont_ttf
@@ -197,7 +197,7 @@
     waybar
     alacritty
     foot
-    rofi-wayland
+    rofi
     swayidle
     wl-clipboard
     brightnessctl
