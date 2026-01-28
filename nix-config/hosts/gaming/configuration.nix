@@ -91,8 +91,10 @@
     TTYVTDisallocate = true;
   };
 
-  # XWayland for X11 apps (Steam, etc.)
-  programs.xwayland.enable = true;
+  # xwayland-satellite for rootless X11 support in Niri
+  # Niri 25.08+ auto-spawns xwayland-satellite on-demand when X11 apps connect
+  # This is MUCH better than traditional Xwayland for tiling WMs
+  # programs.xwayland.enable = true;  # NOT needed - xwayland-satellite handles X11
 
   # AMD GPU - RADV only (best for CS2 on RDNA3)
   hardware.graphics = {
@@ -148,7 +150,7 @@
       noto-fonts-color-emoji
       liberation_ttf
       dejavu_fonts
-      ubuntu-classic 
+      ubuntu-classic
       font-awesome
       # Fallback
       freefont_ttf
@@ -193,6 +195,10 @@
     gamescope
     protonup-qt
 
+    # xwayland-satellite - rootless X11 for Wayland compositors
+    # Niri auto-spawns this when X11 apps connect
+    xwayland-satellite
+
     # Networking
     networkmanagerapplet
 
@@ -205,6 +211,9 @@
     wl-clipboard
     brightnessctl
     pavucontrol
+
+    # Clipboard sync between X11 and Wayland (for xwayland-satellite)
+    xsel
 
     # Niri itself at system level
     niri
@@ -238,9 +247,19 @@
       enable = true;
       args = [
         "--rt"
-        "--expose-wayland"
-        "--force-grab-cursor"
-        # NO --adaptive-sync (VRR adds latency)
+        "--backend"
+        "sdl" # REQUIRED for Niri - fixes cursor issues
+        "--force-grab-cursor" # Prevents cursor escaping on multi-monitor
+        # Resolution - adjust to your monitor
+        "-W"
+        "2560"
+        "-H"
+        "1440"
+        "-w"
+        "2560"
+        "-h"
+        "1440"
+        # NO --adaptive-sync (VRR adds latency for competitive)
         # NO --hdr-enabled (HDR processing adds latency)
       ];
     };
@@ -295,7 +314,7 @@
 
   security.rtkit.enable = true;
 
-  # PipeWire - low latency for footsteps/audio cues
+  # PipeWire - balanced latency (32 was causing crackling)
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -303,12 +322,12 @@
     pulse.enable = true;
     jack.enable = true;
     wireplumber.enable = true;
-    extraConfig.pipewire."92-low-latency" = {
+    extraConfig.pipewire."92-gaming-latency" = {
       "context.properties" = {
         "default.clock.rate" = 48000;
-        "default.clock.quantum" = 32;
-        "default.clock.min-quantum" = 32;
-        "default.clock.max-quantum" = 32;
+        "default.clock.quantum" = 256; # More stable, ~5ms latency
+        "default.clock.min-quantum" = 128; # Allow lower when system is idle
+        "default.clock.max-quantum" = 512; # Allow higher if needed
       };
     };
   };

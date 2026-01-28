@@ -160,6 +160,20 @@ in
               inactive.color = "#7d0d2d";
             };
           }
+          {
+            # Steam notifications - move to bottom right corner
+            matches = [
+              {
+                app-id = "steam";
+                title = "^notificationtoasts_.*_desktop$";
+              }
+            ];
+            default-floating-position = {
+              x = 10;
+              y = 10;
+              relative-to = "bottom-right";
+            };
+          }
         ];
 
         cursor = {
