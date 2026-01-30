@@ -15,7 +15,7 @@ in
   imports = [
     ../../modules/home/common.nix
     ../../modules/home/niri.nix
-    ./zen-browser.nix
+    ../../modules/home/zen-browser.nix
   ];
 
   # Enable niri via home-manager (standalone, not NixOS)

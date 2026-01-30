@@ -217,6 +217,9 @@
 
     # Niri itself at system level
     niri
+
+    # Discord alternative
+    vesktop
   ];
 
   # GameMode - CS2 automatically uses it via Steam integration

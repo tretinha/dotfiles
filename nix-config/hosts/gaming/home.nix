@@ -10,6 +10,7 @@ in
   imports = [
     ../../modules/home/common.nix
     ../../modules/home/niri.nix
+    ../../modules/home/zen-browser.nix
   ];
 
   # Enable niri via home-manager
@@ -28,6 +29,18 @@ in
     };
   };
 
+  programs.bash = {
+    sessionVariables = {
+      EDITOR = "nvim";
+      BROWSER = "zen";
+    };
+
+    shellAliases = {
+      apogea = "gamescope -f -W 2560 -H 1440 -w 2560 -h 1440 --force-grab-cursor --backend sdl -- steam steam://rungameid/2796220";
+      cs = "gamescope -f -W 2561 -H 1440 -w 2560 -h 1440 --force-grab-cursor --backend sdl -- steam steam://rungameid/730";
+    };
+  };
+
   # Fonts
   fonts.fontconfig.enable = true;
 
@@ -35,8 +48,6 @@ in
   home.homeDirectory = "/home/gustavo";
 
   home.packages = with pkgs; [
-    discord
-
     # Fonts
     nerd-fonts.jetbrains-mono
     nerd-fonts.iosevka
@@ -60,6 +71,10 @@ in
     # Networking GUI
     networkmanagerapplet
   ];
+
+  home.sessionVariables = {
+    BROWSER = "zen";
+  };
 
   xdg.configFile = {
     "nvim" = {

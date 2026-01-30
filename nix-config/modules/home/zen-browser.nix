@@ -26,12 +26,12 @@
             position = 2000;
           };
         };
-      extensions.packages = [
-        pkgs.firefox-addons.ublock-origin
-        pkgs.firefox-addons.onepassword-password-manager
-        # glean extension had to be manually installed since apparently it's
-        # not available in the nur repo
-      ];
+      # extensions.packages = [
+      #   pkgs.firefox-addons.ublock-origin
+      #   pkgs.firefox-addons.onepassword-password-manager
+      #   # glean extension had to be manually installed since apparently it's
+      #   # not available in the nur repo
+      # ];
     };
   };
 }

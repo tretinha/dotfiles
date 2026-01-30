@@ -15,6 +15,7 @@
               backupFileExtension = "bkp";
               sharedModules = [
                 inputs.niri.homeModules.niri
+                inputs.zen-browser.homeModules.beta
               ];
             };
           }
