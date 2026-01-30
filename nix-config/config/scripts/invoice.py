@@ -193,20 +193,6 @@ HTML_TEMPLATE = """
         <div class="total-row">Total: ${{ total }}</div>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 80%;">Payment Information</th>
-                <th style="text-align: right;"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ payment_information | safe }}</td>
-                <td style="text-align: right;"></td>
-            </tr>
-        </tbody>
-    </table>
 
 </body>
 </html>
