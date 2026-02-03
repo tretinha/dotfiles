@@ -61,12 +61,12 @@ in
   };
 
   # XDG portals for Wayland screen sharing
+  # Note: xdg-desktop-portal-wlr is installed via apt for proper systemd integration
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
     ];
     config = {
       common = {
