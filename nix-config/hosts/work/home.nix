@@ -118,6 +118,7 @@ in
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     OZONE_PLATFORM = "wayland";
     GDK_BACKEND = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
   };
 
   programs.bash = {
