@@ -53,6 +53,8 @@ in
   # Auto-toggle laptop screen based on external monitor
   programs.niri.settings.spawn-at-startup = [
     { argv = [ "${nix_config_path}/config/scripts/niri-monitor-toggle" ]; }
+    { argv = [ "blueman-applet" ]; }
+    { argv = [ "1password" ]; }
   ];
 
   targets.genericLinux = {
