@@ -21,6 +21,35 @@ in
   # Enable niri via home-manager (standalone, not NixOS)
   programs.niri.enable = true;
 
+  # Work laptop monitor configuration
+  programs.niri.settings.outputs = {
+    "DP-1" = {
+      # Dell U2724DE external monitor
+      mode = {
+        width = 2560;
+        height = 1440;
+        refresh = 120.0;
+      };
+      position = {
+        x = 1536;
+        y = 0;
+      };
+    };
+    "eDP-1" = {
+      # Built-in laptop display
+      mode = {
+        width = 1920;
+        height = 1080;
+        refresh = 60.002;
+      };
+      scale = 1.25;
+      position = {
+        x = 0;
+        y = 0;
+      };
+    };
+  };
+
   targets.genericLinux = {
     enable = true;
     gpu.enable = true;
@@ -34,6 +63,19 @@ in
       xdg-desktop-portal-gtk
       xdg-desktop-portal-wlr
     ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+      };
+    };
   };
 
   fonts.fontconfig.enable = true;
@@ -65,6 +107,10 @@ in
 
   home.sessionVariables = {
     BROWSER = "zen";
+    # Wayland environment variables
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    OZONE_PLATFORM = "wayland";
+    GDK_BACKEND = "wayland";
   };
 
   programs.bash = {
