@@ -31,7 +31,7 @@ in
         refresh = 120.0;
       };
       position = {
-        x = 1536;
+        x = 0;
         y = 0;
       };
     };
@@ -49,6 +49,11 @@ in
       };
     };
   };
+
+  # Auto-toggle laptop screen based on external monitor
+  programs.niri.settings.spawn-at-startup = [
+    { argv = [ "${nix_config_path}/config/scripts/niri-monitor-toggle" ]; }
+  ];
 
   targets.genericLinux = {
     enable = true;
