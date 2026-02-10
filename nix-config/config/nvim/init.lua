@@ -58,6 +58,18 @@ vim.keymap.set("i", "<C-n>", expand_note, {
   silent = true 
 })
 
+local function expand_copyright_banner()
+    local body = "/*\n * Copyright © 2026 Glydways, Inc.\n * https://glydways.com/\n */"
+    vim.snippet.expand(body)
+end
+
+-- Using <C-g> (Control + g) as the trigger for Glydways copyright
+vim.keymap.set("i", "<C-g>", expand_note, {
+  desc = "Expand multi-line snippet",
+  noremap = true, 
+  silent = true 
+})
+
 -- Snippet to add the multi-line #... header ...# comment
 local function expand_header_banner()
   local hash_line = string.rep("#", 80)
