@@ -64,7 +64,7 @@ local function expand_copyright_banner()
 end
 
 -- Using <C-g> (Control + g) as the trigger for Glydways copyright
-vim.keymap.set("i", "<C-g>", expand_note, {
+vim.keymap.set("i", "<C-g>", expand_copyright_banner, {
   desc = "Expand multi-line snippet",
   noremap = true, 
   silent = true 
