@@ -59,7 +59,7 @@ vim.keymap.set("i", "<C-n>", expand_note, {
 })
 
 local function expand_copyright_banner()
-    local body = "/*\n * Copyright © 2026 Glydways, Inc.\n * https://glydways.com/\n */"
+    local body = "/*\n * Copyright © 2026 Glydways, Inc.\n * https://glydways.com/\n */\n"
     vim.snippet.expand(body)
 end
 
