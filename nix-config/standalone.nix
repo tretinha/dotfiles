@@ -9,7 +9,6 @@
           config = {
             allowUnfree = true;
           };
-          overlays = [ inputs.firefox-addons.overlays.default ];
         };
         extraSpecialArgs = {
           inherit inputs;
