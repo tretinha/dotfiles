@@ -17,7 +17,18 @@ COMPANY_HOLIDAYS = [
     datetime.date(2025, 11, 11), 
     datetime.date(2025, 11, 27), 
     datetime.date(2025, 12, 25), 
-    datetime.date(2026, 1, 1)
+    datetime.date(2026, 1, 1),
+    datetime.date(2026, 1, 19),
+    datetime.date(2026, 2, 16),
+    datetime.date(2026, 5, 25),
+    datetime.date(2026, 6, 4),
+    datetime.date(2026, 9, 7),
+    datetime.date(2026, 10, 12),
+    datetime.date(2026, 11, 11),
+    datetime.date(2026, 11, 26),
+    datetime.date(2026, 11, 27),
+    datetime.date(2026, 12, 24),
+    datetime.date(2026, 12, 25)
 ]
 
 
