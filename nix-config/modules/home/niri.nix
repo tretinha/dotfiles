@@ -129,9 +129,15 @@ in
           focus-ring = {
             enable = true;
             width = 4;
-            active.color = "#79D9FFBF"; 
-            # inactive.color = "#79D9FF33";
-            inactive.color = "#50505080";
+            
+            # Focused Window: A vibrant Red to stand out
+            # #ff5555 is a classic "Bright Red" 
+            # Adding 'BF' for 75% opacity to match your Waybar style
+            active.color = "#ff5555BF"; 
+            
+            # Inactive Windows: Your Waybar Blue
+            # #79D9FF with '80' for ~50% opacity so they stay subtle
+            inactive.color = "#79D9FF80";
           };
           struts = {
             left = 0;
