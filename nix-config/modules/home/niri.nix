@@ -125,23 +125,22 @@ in
 
 
         layout = {
-          gaps = 4; # Essential: this provides the 4px "track" for the colors to live in
+          # Use 4px gaps so the windows touch perfectly with 4px borders
+          gaps = 4; 
 
-          # 1. The Focused Window (Red)
-          focus-ring = {
-            enable = true;
-            width = 4;
-            active.color = "#ff5555BF";   # Your Red
-            inactive.color = "transparent"; # Turn this off so it doesn't overlap the blue
-          };
+          # 1. Disable the focus-ring to remove the "double" border
+          focus-ring.enable = false;
 
-          # 2. The Inactive Windows (Blue)
+          # 2. Use the border block for the color-switching logic
           border = {
             enable = true;
             width = 4;
-            # This applies to all windows; the focus-ring will draw OVER it on the active one
-            active.color = "#79D9FF80";   # Your Waybar Blue
-            inactive.color = "#79D9FF80"; # Keeps blue even when not focused
+            
+            # Active (Focused) Window: Red
+            active.color = "#ff5555BF"; 
+            
+            # Inactive Windows: Waybar Blue
+            inactive.color = "#79D9FF80"; 
           };
 
           struts = {
@@ -150,10 +149,10 @@ in
             top = 0;
             bottom = 0;
           };
+          
+          # Your existing width presets...
           center-focused-column = "never";
-          default-column-width = {
-            proportion = 1. / 2.;
-          };
+          default-column-width.proportion = 1. / 2.;
         };
 
         animations = {
