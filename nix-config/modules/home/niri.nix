@@ -140,7 +140,7 @@ in
             # active.color = "#79D9FF80"
             
             # Inactive Windows: Waybar Blue
-            inactive.color = "#79D9FF80"; 
+            inactive.color = "#79D9FFBF"; 
           };
 
           struts = {
