@@ -130,7 +130,8 @@ in
             enable = true;
             width = 4;
             active.color = "#79D9FFBF"; 
-            inactive.color = "#79D9FF33";
+            # inactive.color = "#79D9FF33";
+            inactive.color = "#50505080";
           };
           struts = {
             left = 0;
