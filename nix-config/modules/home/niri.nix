@@ -123,40 +123,37 @@ in
         #   };
         # };
 
-        layout = {
-          # Removes the black margins between windows
-          gaps = 0; 
 
-          # Matching your Waybar Blue (#79D9FF)
+        layout = {
+          # Set gaps to match your focus-ring width (4px) 
+          # This creates just enough room for the blue ring to show on all sides
+          gaps = 4; 
+
           focus-ring = {
             enable = true;
             width = 4;
-            # Using 75% opacity (BF) to match your Waybar 'alpha' setting
+            # Your Waybar Blue @ 75% opacity
             active.color = "#79D9FFBF"; 
-            # A darker, more transparent version for inactive windows
-            inactive.color = "#79D9FF33"; 
+            inactive.color = "#79D9FF33";
           };
 
-          # Ensure the border is disabled if you prefer the 'glow' of the focus-ring
+          # Ensure the border is OFF so it doesn't double-up with the ring
           border = {
             enable = false;
           };
 
-          # Keep windows flush against the edges
+          # Struts define the 'safe area' where windows can't go.
+          # Since your Waybar is likely at the top, we set the top strut 
+          # to the height of your bar (usually ~30px) so the ring doesn't 
+          # overlap the Waybar.
           struts = {
             left = 0;
             right = 0;
-            top = 0;
+            top = 30;    # Adjust this to your Waybar's height
             bottom = 0;
           };
 
-          # Your existing column logic
           center-focused-column = "never";
-          preset-column-widths = [
-            { proportion = 1. / 3.; }
-            { proportion = 1. / 2.; }
-            { proportion = 2. / 3.; }
-          ];
           default-column-width = {
             proportion = 1. / 2.;
           };
