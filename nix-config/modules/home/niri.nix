@@ -125,20 +125,25 @@ in
 
 
         layout = {
-          gaps = 4;
+          gaps = 4; # Essential: this provides the 4px "track" for the colors to live in
+
+          # 1. The Focused Window (Red)
           focus-ring = {
             enable = true;
             width = 4;
-            
-            # Focused Window: A vibrant Red to stand out
-            # #ff5555 is a classic "Bright Red" 
-            # Adding 'BF' for 75% opacity to match your Waybar style
-            active.color = "#ff5555BF"; 
-            
-            # Inactive Windows: Your Waybar Blue
-            # #79D9FF with '80' for ~50% opacity so they stay subtle
-            inactive.color = "#79D9FF80";
+            active.color = "#ff5555BF";   # Your Red
+            inactive.color = "transparent"; # Turn this off so it doesn't overlap the blue
           };
+
+          # 2. The Inactive Windows (Blue)
+          border = {
+            enable = true;
+            width = 4;
+            # This applies to all windows; the focus-ring will draw OVER it on the active one
+            active.color = "#79D9FF80";   # Your Waybar Blue
+            inactive.color = "#79D9FF80"; # Keeps blue even when not focused
+          };
+
           struts = {
             left = 0;
             right = 0;
