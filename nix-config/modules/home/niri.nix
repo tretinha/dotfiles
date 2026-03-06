@@ -125,34 +125,19 @@ in
 
 
         layout = {
-          # Set gaps to match your focus-ring width (4px) 
-          # This creates just enough room for the blue ring to show on all sides
-          gaps = 4; 
-
+          gaps = 4;
           focus-ring = {
             enable = true;
             width = 4;
-            # Your Waybar Blue @ 75% opacity
             active.color = "#79D9FFBF"; 
             inactive.color = "#79D9FF33";
           };
-
-          # Ensure the border is OFF so it doesn't double-up with the ring
-          border = {
-            enable = false;
-          };
-
-          # Struts define the 'safe area' where windows can't go.
-          # Since your Waybar is likely at the top, we set the top strut 
-          # to the height of your bar (usually ~30px) so the ring doesn't 
-          # overlap the Waybar.
           struts = {
             left = 0;
             right = 0;
-            top = 30;    # Adjust this to your Waybar's height
+            top = 0;
             bottom = 0;
           };
-
           center-focused-column = "never";
           default-column-width = {
             proportion = 1. / 2.;
