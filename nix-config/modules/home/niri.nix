@@ -126,7 +126,7 @@ in
 
         layout = {
           # Use 4px gaps so the windows touch perfectly with 4px borders
-          gaps = 4; 
+          gaps = 1; 
 
           # 1. Disable the focus-ring to remove the "double" border
           focus-ring.enable = false;
@@ -136,8 +136,8 @@ in
             enable = true;
             width = 4;
             
-            # Active (Focused) Window: Red
             active.color = "#ff5555BF"; 
+            # active.color = "#79D9FF80"
             
             # Inactive Windows: Waybar Blue
             inactive.color = "#79D9FF80"; 
