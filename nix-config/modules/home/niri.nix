@@ -93,11 +93,65 @@ in
         # outputs defined directly per host
         outputs = { };
 
+        # layout = {
+        #   gaps = 8;
+        #   default-column-width = { };
+        #   center-focused-column = "never";
+        #   background-color = "transparent";
+        #   preset-column-widths = [
+        #     { proportion = 1. / 3.; }
+        #     { proportion = 1. / 2.; }
+        #     { proportion = 2. / 3.; }
+        #   ];
+        #   default-column-width = {
+        #     proportion = 1. / 2.;
+        #   };
+        #   focus-ring = {
+        #     width = 4;
+        #   };
+        #   border = {
+        #     enable = false;
+        #   };
+        #   shadow = {
+        #     enable = false;
+        #   };
+        #   struts = {
+        #     left = 0;
+        #     right = 0;
+        #     top = 0;
+        #     bottom = 0;
+        #   };
+        # };
+
         layout = {
-          gaps = 8;
-          default-column-width = { };
+          # Removes the black margins between windows
+          gaps = 0; 
+
+          # Matching your Waybar Blue (#79D9FF)
+          focus-ring = {
+            enable = true;
+            width = 4;
+            # Using 75% opacity (BF) to match your Waybar 'alpha' setting
+            active.color = "#79D9FFBF"; 
+            # A darker, more transparent version for inactive windows
+            inactive.color = "#79D9FF33"; 
+          };
+
+          # Ensure the border is disabled if you prefer the 'glow' of the focus-ring
+          border = {
+            enable = false;
+          };
+
+          # Keep windows flush against the edges
+          struts = {
+            left = 0;
+            right = 0;
+            top = 0;
+            bottom = 0;
+          };
+
+          # Your existing column logic
           center-focused-column = "never";
-          background-color = "transparent";
           preset-column-widths = [
             { proportion = 1. / 3.; }
             { proportion = 1. / 2.; }
@@ -105,21 +159,6 @@ in
           ];
           default-column-width = {
             proportion = 1. / 2.;
-          };
-          focus-ring = {
-            width = 4;
-          };
-          border = {
-            enable = false;
-          };
-          shadow = {
-            enable = false;
-          };
-          struts = {
-            left = 0;
-            right = 0;
-            top = 0;
-            bottom = 0;
           };
         };
 
