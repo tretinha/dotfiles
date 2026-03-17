@@ -110,6 +110,7 @@ in
     swayidle
     obsidian
     zoom-us
+    wayvnc
   ];
 
   home.sessionVariables = {
