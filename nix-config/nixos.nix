@@ -21,6 +21,21 @@
           }
         ];
       };
+      media = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/media/configuration.nix
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.gustavo = import ./hosts/media/home.nix;
+              backupFileExtension = "bkp";
+            };
+          }
+        ];
+      };
     };
   };
 }
