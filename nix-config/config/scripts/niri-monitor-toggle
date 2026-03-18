@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# If external monitor is connected, disable laptop screen.
+# If not, enable laptop screen. Polls every 2 seconds.
+
+while true; do
+    if niri msg outputs | grep -q "(DP-1)"; then
+        niri msg output eDP-1 off
+    else
+        niri msg output eDP-1 on
+    fi
+    sleep 2
+done
