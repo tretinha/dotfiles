@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
   nix_xdg_config = "${config.home.homeDirectory}/dotfiles/nix-config/config";
@@ -20,6 +20,7 @@ in
   home.packages = with pkgs; [
     alacritty
     networkmanagerapplet
+    (inputs.agenix.packages.${system}.default)
   ];
 
   xdg.configFile = {
