@@ -61,6 +61,13 @@
 
   networking.hostName = "gaming";
 
+  networking.hosts = {
+    "127.0.0.1" = ["localhost"];
+    "::1" = ["localhost"];
+    "127.0.0.2" = ["gaming"];
+    "192.168.229.69" = ["media"];
+  };
+
   # NetworkManager - ensure WiFi works on boot
   networking.networkmanager = {
     enable = true;

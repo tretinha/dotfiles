@@ -16,6 +16,12 @@
 
   networking.hostName = "media";
   systemd.services.NetworkManager-wait-online.enable = false;
+  networking.hosts = {
+    "127.0.0.1" = ["localhost"];
+    "::1" = ["localhost"];
+    "127.0.0.2" = ["media"];
+    "192.168.229.186" = ["gaming"];
+  };
 
   users.users = {
     gustavo = {
