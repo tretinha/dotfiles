@@ -24,8 +24,9 @@
     wlr.enable = true; # For wlroots-based compositors like niri
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
     ];
-    config.common.default = "*";
+    config.common.default = [ "gnome" "gtk" ];
   };
 
   # Use latest kernel for best RDNA3 support
@@ -220,6 +221,8 @@
 
     # Discord alternative
     vesktop
+
+    obs-studio
   ];
 
   # GameMode - CS2 automatically uses it via Steam integration
