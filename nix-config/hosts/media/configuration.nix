@@ -78,10 +78,13 @@
       dnsProvider = "cloudflare";
       environmentFile = config.age.secrets.cloudflare.path;
       group = "nginx";
-      # Cloudflare's authoritative NS caches NXDOMAIN for 1800s, causing lego's
-      # propagation check to fail. Skip the authoritative NS check and let
-      # Let's Encrypt validate directly.
-      extraLegoFlags = [ "--dns.propagation-disable-ans" ];
+      # Cloudflare is slow to propagate API-created TXT records. Sleep before
+      # asking Let's Encrypt to validate (propagation-wait also skips all
+      # DNS propagation checks after the sleep).
+      extraLegoFlags = [
+        "--dns.propagation-wait"
+        "60s"
+      ];
     };
   };
 
