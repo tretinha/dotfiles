@@ -17,10 +17,10 @@
   networking.hostName = "media";
   systemd.services.NetworkManager-wait-online.enable = false;
   networking.hosts = {
-    "127.0.0.1" = ["localhost"];
-    "::1" = ["localhost"];
-    "127.0.0.2" = ["media"];
-    "192.168.229.186" = ["gaming"];
+    "127.0.0.1" = [ "localhost" ];
+    "::1" = [ "localhost" ];
+    "127.0.0.2" = [ "media" ];
+    "192.168.229.186" = [ "gaming" ];
   };
 
   networking.firewall.allowedTCPPorts = [ 443 ];
@@ -60,12 +60,12 @@
 
   age.secrets = {
     "cloudflare" = {
-      file = ../../secrets/cloudflare.age; 
+      file = ../../secrets/cloudflare.age;
       owner = "acme";
       group = "nginx";
     };
     "cloudflare-raw" = {
-      file = ../../secrets/cloudflare-raw.age; 
+      file = ../../secrets/cloudflare-raw.age;
     };
   };
 
@@ -78,6 +78,10 @@
       dnsProvider = "cloudflare";
       environmentFile = config.age.secrets.cloudflare.path;
       group = "nginx";
+      # Cloudflare's authoritative NS caches NXDOMAIN for 1800s, causing lego's
+      # propagation check to fail. Skip the authoritative NS check and let
+      # Let's Encrypt validate directly.
+      extraLegoFlags = [ "--dns.propagation-disable-ans" ];
     };
   };
 
@@ -92,10 +96,10 @@
     virtualHosts."plex.tretinha.com" = {
       useACMEHost = "tretinha.com";
       forceSSL = true;
-      
+
       extraConfig = ''
         send_timeout 100m;
-        
+
         # Forward real ip and host to Plex
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
