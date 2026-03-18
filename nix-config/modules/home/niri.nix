@@ -77,7 +77,7 @@ in
             xkb = {
               layout = "us";
               # variant = "intl";
-              # options = "caps:swapescape";
+              options = "caps:swapescape";
             };
             repeat-delay = 150;
             repeat-rate = 40;
