@@ -48,27 +48,22 @@
       flake-parts,
       ...
     }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = _: true;
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" "aarch64-darwin" ];
+
+      perSystem = { system, ... }: {
+        _module.args.pkgs = import nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+            allowUnfreePredicate = _: true;
+          };
         };
       };
-    in
-    flake-parts.lib.mkFlake { inherit inputs; } {
 
-      systems = [ system ];
       imports = [
-        ./nixos.nix # NixOS system configurations (gaming PC)
-        ./standalone.nix # Standalone home-manager configs (work PC on Ubuntu)
+        ./nixos.nix # NixOS systems
+        ./standalone.nix # Non-NixOS systems
       ];
-      # devShell."${system}" = pkgs.mkShell {
-      #   packages = with pkgs; [
-      #     nh
-      #   ];
-      # };
     };
 }

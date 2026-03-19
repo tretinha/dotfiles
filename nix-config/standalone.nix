@@ -19,6 +19,22 @@
           ./hosts/work/home.nix
         ];
       };
+      
+      "gustavo@lila" = inputs.home-manager.lib.homeManagerConfiguration {
+        pkgs = import inputs.nixpkgs {
+          system = "aarch64-darwin";
+          config = {
+            allowUnfree = true;
+          };
+        };
+        extraSpecialArgs = {
+          inherit inputs;
+        };
+        modules = with inputs; [
+          zen-browser.homeModules.beta
+          ./hosts/lila/home.nix
+        ];
+      };
     };
   };
 }
