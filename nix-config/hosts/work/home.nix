@@ -111,6 +111,7 @@ in
     obsidian
     zoom-us
     wayvnc
+    google-chrome
   ];
 
   home.sessionVariables = {
