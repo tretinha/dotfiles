@@ -21,13 +21,7 @@ in
   home.packages = with pkgs; [
     alacritty
     whatsapp-for-mac
-    inputs.zen-browser.packages.aarch64-darwin.default
   ];
-
-  home.activation.symlinkZenBrowser = config.lib.dag.entryAfter ["writeBoundary"] ''
-    mkdir -p $HOME/Applications
-    ln -sfn ${inputs.zen-browser.packages.aarch64-darwin.default}/Applications/Zen\ Browser.app $HOME/Applications/Zen\ Browser.app
-  '';
 
   # Symlink configurations
   xdg.configFile = {
