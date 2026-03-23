@@ -115,7 +115,6 @@ in
   ];
 
   home.sessionVariables = {
-    BROWSER = "zen";
     # Wayland environment variables
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     OZONE_PLATFORM = "wayland";
@@ -127,7 +126,6 @@ in
     sessionVariables = {
       EDITOR = "nvim";
       PATH = "$HOME/bin:$HOME/.local/bin:$HOME/.cache/glyd/cas/f686e1d39682f5ada2b165e737eb136521f5a519/bin:$PATH";
-      BROWSER = "zen";
     };
 
     shellAliases = {
