@@ -120,7 +120,22 @@ in
     OZONE_PLATFORM = "wayland";
     GDK_BACKEND = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
+    BROWSER = "google-chrome-stable";
   };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "google-chrome.desktop";
+      "x-scheme-handler/http" = "google-chrome.desktop";
+      "x-scheme-handler/https" = "google-chrome.desktop";
+      "x-scheme-handler/about" = "google-chrome.desktop";
+      "x-scheme-handler/unknown" = "google-chrome.desktop";
+    };
+  };
+
+  xdg.configFile."mimeapps.list".force = true;
+  xdg.dataFile."applications/mimeapps.list".force = true;
 
   programs.bash = {
     sessionVariables = {
