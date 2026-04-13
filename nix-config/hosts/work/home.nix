@@ -112,6 +112,7 @@ in
     zoom-us
     wayvnc
     google-chrome
+    plexamp
   ];
 
   home.sessionVariables = {
