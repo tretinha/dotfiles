@@ -194,6 +194,13 @@ in
     };
   };
 
+  # Symlink private files not committed to the public dotfiles repo
+  home.activation.linkPrivateFiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD ln -sfn $VERBOSE_ARG \
+      "${config.home.homeDirectory}/.local/share/private/opencode/AGENTS.md" \
+      "${config.home.homeDirectory}/.config/opencode/AGENTS.md"
+  '';
+
   systemd.user.services = {
     dotfiles-sync = {
       Unit = {
