@@ -48,6 +48,13 @@
     };
   };
 
+  services.immich = {
+    enable = true;
+    port = 2283;
+    host = "0.0.0.0";
+    openFirewall = true;
+  };
+
   services.openssh.enable = true;
   services.plex = {
     enable = true;
@@ -91,62 +98,83 @@
   services.cloudflare-dyndns = {
     enable = true;
     apiTokenFile = config.age.secrets.cloudflare-raw.path;
-    domains = [ "plex.tretinha.com" ];
+    domains = [
+      "plex.tretinha.com"
+      "immich.tretinha.com"
+    ];
   };
 
   services.nginx = {
     enable = true;
-    virtualHosts."plex.tretinha.com" = {
-      useACMEHost = "tretinha.com";
-      forceSSL = true;
+    virtualHosts = {
+      "plex.tretinha.com" = {
+        useACMEHost = "tretinha.com";
+        forceSSL = true;
 
-      extraConfig = ''
-        send_timeout 100m;
+        extraConfig = ''
+          send_timeout 100m;
 
-        # Forward real ip and host to Plex
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header Host $host;
-        proxy_set_header Referer $server_addr;
-        proxy_set_header Origin $server_addr;
+          # Forward real ip and host to Plex
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header Host $host;
+          proxy_set_header Referer $server_addr;
+          proxy_set_header Origin $server_addr;
 
-        # Plex has A LOT of javascript, xml and html.
-        gzip on;
-        gzip_vary on;
-        gzip_min_length 1000;
-        gzip_proxied any;
-        gzip_types text/plain text/css text/xml application/xml text/javascript application/x-javascript image/svg+xml;
-        gzip_disable "MSIE [1-6]\.";
+          # Plex has A LOT of javascript, xml and html.
+          gzip on;
+          gzip_vary on;
+          gzip_min_length 1000;
+          gzip_proxied any;
+          gzip_types text/plain text/css text/xml application/xml text/javascript application/x-javascript image/svg+xml;
+          gzip_disable "MSIE [1-6]\.";
 
-        # Fix for large uploads
-        client_max_body_size 100M;
+          # Fix for large uploads
+          client_max_body_size 100M;
 
-        # Plex headers
-        proxy_set_header X-Plex-Client-Identifier $http_x_plex_client_identifier;
-        proxy_set_header X-Plex-Device $http_x_plex_device;
-        proxy_set_header X-Plex-Device-Name $http_x_plex_device_name;
-        proxy_set_header X-Plex-Platform $http_x_plex_platform;
-        proxy_set_header X-Plex-Platform-Version $http_x_plex_platform_version;
-        proxy_set_header X-Plex-Product $http_x_plex_product;
-        proxy_set_header X-Plex-Token $http_x_plex_token;
-        proxy_set_header X-Plex-Version $http_x_plex_version;
-        proxy_set_header X-Plex-Nocache $http_x_plex_nocache;
-        proxy_set_header X-Plex-Provides $http_x_plex_provides;
-        proxy_set_header X-Plex-Device-Vendor $http_x_plex_device_vendor;
-        proxy_set_header X-Plex-Model $http_x_plex_model;
+          # Plex headers
+          proxy_set_header X-Plex-Client-Identifier $http_x_plex_client_identifier;
+          proxy_set_header X-Plex-Device $http_x_plex_device;
+          proxy_set_header X-Plex-Device-Name $http_x_plex_device_name;
+          proxy_set_header X-Plex-Platform $http_x_plex_platform;
+          proxy_set_header X-Plex-Platform-Version $http_x_plex_platform_version;
+          proxy_set_header X-Plex-Product $http_x_plex_product;
+          proxy_set_header X-Plex-Token $http_x_plex_token;
+          proxy_set_header X-Plex-Version $http_x_plex_version;
+          proxy_set_header X-Plex-Nocache $http_x_plex_nocache;
+          proxy_set_header X-Plex-Provides $http_x_plex_provides;
+          proxy_set_header X-Plex-Device-Vendor $http_x_plex_device_vendor;
+          proxy_set_header X-Plex-Model $http_x_plex_model;
 
-        # Websockets
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
+          # Websockets
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "upgrade";
 
-        # Buffering off
-        proxy_redirect off;
-        proxy_buffering off;
-      '';
-      locations."/" = {
-        proxyPass = "http://localhost:32400/";
+          # Buffering off
+          proxy_redirect off;
+          proxy_buffering off;
+        '';
+        locations."/" = {
+          proxyPass = "http://localhost:32400/";
+        };
+      };
+      "immich.tretinha.com" = {
+        useACMEHost = "tretinha.com";
+        forceSSL = true;
+
+        locations."/" = {
+          proxyPass = "http://localhost:2283/";
+          proxyWebsockets = true;
+          recommendedProxySettings = true;
+          extraConfig = ''
+            client_max_body_size 50000M;
+            proxy_read_timeout   600s;
+            proxy_send_timeout   600s;
+            send_timeout         600s;
+          '';
+        };
       };
     };
   };
