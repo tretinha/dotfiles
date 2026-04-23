@@ -48,13 +48,6 @@
     };
   };
 
-  services.immich = {
-    enable = true;
-    port = 2283;
-    host = "0.0.0.0";
-    openFirewall = true;
-  };
-
   services.openssh.enable = true;
   services.plex = {
     enable = true;
@@ -100,7 +93,6 @@
     apiTokenFile = config.age.secrets.cloudflare-raw.path;
     domains = [
       "plex.tretinha.com"
-      "immich.tretinha.com"
     ];
   };
 
@@ -158,22 +150,6 @@
         '';
         locations."/" = {
           proxyPass = "http://localhost:32400/";
-        };
-      };
-      "immich.tretinha.com" = {
-        useACMEHost = "tretinha.com";
-        forceSSL = true;
-
-        locations."/" = {
-          proxyPass = "http://localhost:2283/";
-          proxyWebsockets = true;
-          recommendedProxySettings = true;
-          extraConfig = ''
-            client_max_body_size 50000M;
-            proxy_read_timeout   600s;
-            proxy_send_timeout   600s;
-            send_timeout         600s;
-          '';
         };
       };
     };
