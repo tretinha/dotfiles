@@ -94,7 +94,6 @@ in
     xournalpp
     _1password-gui
     caffeine-ng
-    atuin
     wl-clipboard
     wdisplays
     gnome-tweaks
@@ -153,10 +152,6 @@ in
       source /home/gustavo/glyd/glyd/dev/env/login-setup.sh 2>/dev/null || true
       source ${nix_config_path}/config/scripts/gl_k_completion.bash 2>/dev/null || true
 
-      # Atuin
-      . "$HOME/.atuin/bin/env" 2>/dev/null || true
-      [[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-      eval "$(atuin init bash 2>/dev/null)" || true
     '';
   };
 
