@@ -1,29 +1,7 @@
 require("config.lazy")
-require("config.build")
 
--- plan9 acme style
 vim.opt.termguicolors = true
-require("colors.acme")
-
--- Build configuration to make app=sp-sandbox-eks-1
-vim.keymap.set("n", "<leader>bs", function()
-    require("config.build").build("sb")
-end, { desc = "Build Sandbox EKS" })
-
--- Build configuration to make app=eks-ci
-vim.keymap.set("n", "<leader>bc", function()
-    require("config.build").build("ci")
-end, { desc = "Build CI EKS" })
-
--- Build configuration to make app=sp-gdf2-k8s
-vim.keymap.set("n", "<leader>b2", function()
-    require("config.build").build("2")
-end, { desc = "Build GDF2 EKS" })
-
--- Build configuration to make app=sp-wayside-prd-1
-vim.keymap.set("n", "<leader>w", function()
-    require("config.build").build("w1")
-end, { desc = "Build Wayside EKS 1" })
+vim.cmd("colorscheme flexoki-light")
 
 -- Build configuration to just clean
 vim.keymap.set("n", "<leader>jc", function()
@@ -84,11 +62,6 @@ vim.keymap.set("i", "<C-b>", expand_header_banner, {
   noremap = true,
   silent = true
 })
-
--- Runs copilot in interactive mode
-vim.keymap.set("n", "<leader>c", function()
-    require("config.copilot").prompt()
-end, { desc = "Copilot interactive" })
 
 -- TERMINAL mode use ESC to go back to NORMAL
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')

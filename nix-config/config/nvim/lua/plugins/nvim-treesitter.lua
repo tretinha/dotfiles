@@ -6,9 +6,10 @@ return {
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = { "c", "lua", "vimdoc", "cue", "terraform", "yaml", "gotmpl", "helm" }, -- Specify parsers to install
-        highlight = { enable = false }, -- Not particularly a fan
+        highlight = { enable = true },
         indent = { enable = true },
       })
     end,
   },
+  { 'kepano/flexoki-neovim', name = 'flexoki' }
 }
