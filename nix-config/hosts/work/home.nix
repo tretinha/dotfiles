@@ -112,6 +112,7 @@ in
     wayvnc
     google-chrome
     plexamp
+    spotify
   ];
 
   home.sessionVariables = {
