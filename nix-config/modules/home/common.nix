@@ -114,7 +114,7 @@
       bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
 
       # Disable automatic window renaming
-      set-option -g allow-rename off
+      # set-option -g allow-rename off
 
       # Status bar styling
       # set -g status-position bottom
@@ -122,18 +122,18 @@
 
       # Status bar: Match Waybar Blue
       # Using black text (fg) for readability against the light blue
-      set -g status-position bottom
-      set -g status-style "bg=#79D9FF,fg=#000000"
+      # set -g status-position bottom
+      # set -g status-style "bg=#79D9FF,fg=#000000"
 
       # Pane Borders: Match Niri Window Borders
       # Active pane = Red (#ff5555)
       # Inactive panes = Waybar Blue (#79D9FF)
-      set -g pane-border-lines heavy
-      set -g pane-border-style "fg=#79D9FF"
-      set -g pane-active-border-style "fg=#ff5555"
+      # set -g pane-border-lines heavy
+      # set -g pane-border-style "fg=#79D9FF"
+      # set -g pane-active-border-style "fg=#ff5555"
 
       # Message text (e.g. prefix prompt)
-      set -g message-style "bg=#79D9FF,fg=#000000"
+      # set -g message-style "bg=#79D9FF,fg=#000000"
 
       flexoki_black="#100f0f"
       flexoki_base_950="#1c1b1a"
