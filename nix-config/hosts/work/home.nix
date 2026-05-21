@@ -91,6 +91,8 @@ in
 
   home.packages = with pkgs; [
     opencode
+    claude-code
+    claude-monitor
     xournalpp
     _1password-gui
     caffeine-ng
