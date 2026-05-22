@@ -128,7 +128,6 @@
       # Pane Borders: Match Niri Window Borders
       # Active pane = Red (#ff5555)
       # Inactive panes = Waybar Blue (#79D9FF)
-      # set -g pane-border-lines heavy
       # set -g pane-border-style "fg=#79D9FF"
       # set -g pane-active-border-style "fg=#ff5555"
 
@@ -218,6 +217,9 @@
       # Modes
       setw -g clock-mode-colour $color_blue
       setw -g mode-style fg=$color_orange,bg=$color_tx_1,bold
+
+      # Make the borders stand out more
+      set -g pane-border-lines heavy
     '';
   };
 }
