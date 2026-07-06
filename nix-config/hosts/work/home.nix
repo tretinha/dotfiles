@@ -16,6 +16,7 @@ in
     ../../modules/home/common.nix
     ../../modules/home/niri.nix
     ../../modules/home/zen-browser.nix
+    ../../modules/home/claude-code.nix
   ];
 
   # Enable niri via home-manager (standalone, not NixOS)
@@ -91,7 +92,6 @@ in
 
   home.packages = with pkgs; [
     opencode
-    claude-code
     claude-monitor
     xournalpp
     _1password-gui

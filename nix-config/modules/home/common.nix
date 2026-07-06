@@ -20,17 +20,22 @@
       "flakes"
     ];
 
+    # Fall back to building from source if a substituter is missing a path.
+    fallback = true;
+
     # Binary caches for faster builds
     substituters = [
       "https://cache.nixos.org"
       "https://cache.lix.systems"
       "https://nix-community.cachix.org"
+      "https://niri.cachix.org"
     ];
 
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
     ];
   };
 
