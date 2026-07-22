@@ -43,5 +43,10 @@ in
       source = create_symlink "${nix_xdg_config}/mako";
       recursive = true;
     };
+
+    "fuzzel" = {
+      source = create_symlink "${nix_xdg_config}/fuzzel";
+      recursive = true;
+    };
   };
 }
