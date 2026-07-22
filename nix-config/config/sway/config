@@ -9,8 +9,7 @@ set $mod Mod4
 # deviation: alacritty instead of foot
 set $term alacritty
 set $scripts ~/dotfiles/nix-config/config/scripts
-# deviation: solid color instead of his wallpaper image
-set $lock swaylock -f -c 080F20
+set $lock swaylock -f -i ~/Pictures/wallpaper.jpg --scaling fill
 
 font pango:DejaVu Sans Mono 10
 
