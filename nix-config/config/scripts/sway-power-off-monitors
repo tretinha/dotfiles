@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Power off all monitors; any input powers them back on
+# (mirrors niri's power-off-monitors action).
+
+swaymsg 'output * power off'
+
+# One-shot swayidle: re-assert power off while idle, power back on and
+# exit on the first input. $$ is expanded before exec, and exec makes
+# this script's PID become swayidle's PID, so `kill $$` stops it.
+exec swayidle -w \
+    timeout 1 'swaymsg "output * power off"' \
+    resume "swaymsg 'output * power on'; kill $$"

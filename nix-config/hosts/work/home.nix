@@ -14,49 +14,13 @@ in
 {
   imports = [
     ../../modules/home/common.nix
-    ../../modules/home/niri.nix
+    ../../modules/home/sway.nix
     ../../modules/home/zen-browser.nix
     ../../modules/home/claude-code.nix
   ];
 
-  # Enable niri via home-manager (standalone, not NixOS)
-  programs.niri.enable = true;
-
-  # Work laptop monitor configuration
-  programs.niri.settings.outputs = {
-    "DP-1" = {
-      # Dell U2724DE external monitor
-      mode = {
-        width = 2560;
-        height = 1440;
-        refresh = 120.0;
-      };
-      position = {
-        x = 0;
-        y = 0;
-      };
-    };
-    "eDP-1" = {
-      # Built-in laptop display
-      mode = {
-        width = 1920;
-        height = 1080;
-        refresh = 60.002;
-      };
-      scale = 1.25;
-      position = {
-        x = 0;
-        y = 0;
-      };
-    };
-  };
-
-  # Auto-toggle laptop screen based on external monitor
-  programs.niri.settings.spawn-at-startup = [
-    { argv = [ "${nix_config_path}/config/scripts/niri-monitor-toggle" ]; }
-    { argv = [ "blueman-applet" ]; }
-    { argv = [ "1password" ]; }
-  ];
+  # Outputs, startup apps, and keybindings live in config/sway/config
+  # (symlinked out-of-store by modules/home/sway.nix).
 
   targets.genericLinux = {
     enable = true;
@@ -75,9 +39,8 @@ in
       common = {
         default = [ "gtk" ];
       };
-      niri = {
+      sway = {
         default = [
-          "gnome"
           "gtk"
         ];
         "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
@@ -108,7 +71,6 @@ in
     nerd-fonts.zed-mono
     blueman
     slack
-    swayidle
     obsidian
     zoom-us
     wayvnc

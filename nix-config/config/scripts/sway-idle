@@ -1,0 +1,12 @@
+#!/bin/sh
+# swayidle wrapper, ported from sircmpwn's bin/idle: warn at 4m30s, lock at
+# 5m, screens off at 10m. Deviations: solid-color swaylock instead of his
+# wallpaper image, `power` instead of the deprecated `dpms`, and an added
+# before-sleep lock (this is a laptop).
+
+exec swayidle -w \
+	timeout 270 'notify-send -t 30000 "Locking screen in 30 seconds"' \
+	timeout 300 'swaylock -f -c 080F20' \
+	timeout 600 'swaymsg "output * power off"' \
+		resume 'swaymsg "output * power on"' \
+	before-sleep 'swaylock -f -c 080F20'

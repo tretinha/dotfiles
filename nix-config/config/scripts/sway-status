@@ -1,0 +1,11 @@
+#!/bin/sh
+# swaybar status line, ported from sircmpwn's bin/custom_statusbar:
+# local time + UTC, refreshed every 10 seconds.
+
+while true
+do
+	utc="$(TZ=UTC date +"%H:%M")"
+	local="$(date +"%A %Y-%m-%d %H:%M")"
+	printf "%s Local / %s UTC\n" "$local" "$utc"
+	sleep 10
+done

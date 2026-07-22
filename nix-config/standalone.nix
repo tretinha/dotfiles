@@ -14,7 +14,6 @@
           inherit inputs;
         };
         modules = with inputs; [
-          niri.homeModules.niri
           zen-browser.homeModules.beta
           ./hosts/work/home.nix
         ];

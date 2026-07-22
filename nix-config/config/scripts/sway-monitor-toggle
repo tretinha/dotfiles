@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# If external monitor is connected, disable laptop screen.
+# If not, enable laptop screen. Polls every 2 seconds.
+# Sway counterpart of niri-monitor-toggle.
+
+while true; do
+    if swaymsg -t get_outputs | jq -e 'any(.[]; .name == "DP-1")' > /dev/null; then
+        swaymsg output eDP-1 disable
+    else
+        swaymsg output eDP-1 enable
+    fi
+    sleep 2
+done
