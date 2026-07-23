@@ -141,6 +141,7 @@ output DP-1 mode 2560x1440@120Hz pos 0 0
 output eDP-1 scale 1.25 pos 0 1440
 
 bar {
+        swaybar_command env GDK_PIXBUF_MODULE_FILE=/home/gustavo/.nix-profile/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache swaybar
         status_command ~/dotfiles/nix-config/config/scripts/sway-status
         position top
         pango_markup disabled

@@ -29,6 +29,7 @@ in
     networkmanagerapplet
     dejavu_fonts
     hicolor-icon-theme
+    librsvg
     xwayland
   ];
 
