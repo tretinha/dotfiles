@@ -1,7 +1,6 @@
 set $mod Mod4
 set $term foot
 set $scripts ~/dotfiles/nix-config/config/scripts
-set $lock swaylock -f -i ~/Pictures/wallpaper.jpg --scaling fill
 
 font pango:DejaVu Sans Mono 10
 
@@ -100,8 +99,6 @@ set $ws9 9
     bindsym $mod+Shift+w exec networkmanager_dmenu
     bindsym $mod+n exec makoctl dismiss
     bindsym $mod+Shift+n exec makoctl dismiss -a
-    bindsym $mod+Mod1+Shift+l exec $lock
-    bindsym Control+Mod1+l exec $lock
     bindsym $mod+Shift+p exec $scripts/sway-power-off-monitors
 
     bindsym $mod+Escape seat default pointer_constraint escape
