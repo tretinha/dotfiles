@@ -28,6 +28,7 @@ in
     jq
     networkmanagerapplet
     dejavu_fonts
+    hicolor-icon-theme
     xwayland
   ];
 

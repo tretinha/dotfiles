@@ -1,7 +1,7 @@
 require("config.lazy")
 
-vim.opt.termguicolors = true
-vim.cmd("colorscheme flexoki-light")
+vim.opt.termguicolors = false
+vim.cmd("colorscheme torte")
 
 -- Build configuration to just clean
 vim.keymap.set("n", "<leader>jc", function()
