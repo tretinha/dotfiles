@@ -123,17 +123,6 @@ in
 
   programs.fzf.enableBashIntegration = lib.mkForce false;
 
-  programs.tmux.extraConfig = lib.mkAfter ''
-    set -ga terminal-overrides ",foot:RGB"
-    set -g status-style bg=#111111,fg=#f0f0f0
-    set -g window-status-current-style bg=#2C4B91,fg=#ffffff
-    set -g window-status-style fg=#888888
-    set -g pane-active-border-style fg=#2C4B91
-    set -g pane-border-style fg=#383838
-    set -g message-style bg=#2C4B91,fg=#ffffff
-    set -g mode-style bg=#2C4B91,fg=#ffffff
-  '';
-
   # Symlink configurations
   xdg.configFile = {
     "nvim" = {
