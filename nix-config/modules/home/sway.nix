@@ -27,11 +27,15 @@ in
     brightnessctl
     jq
     networkmanagerapplet
+    networkmanager_dmenu
     dejavu_fonts
     hicolor-icon-theme
     librsvg
     xwayland
   ];
+
+  xdg.configFile."systemd/user/blueman-manager.service".source =
+    "${pkgs.blueman}/share/systemd/user/blueman-manager.service";
 
   xdg.configFile = {
     "sway" = {
@@ -51,6 +55,11 @@ in
 
     "foot" = {
       source = create_symlink "${nix_xdg_config}/foot";
+      recursive = true;
+    };
+
+    "networkmanager-dmenu" = {
+      source = create_symlink "${nix_xdg_config}/networkmanager-dmenu";
       recursive = true;
     };
   };
