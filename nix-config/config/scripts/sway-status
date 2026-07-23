@@ -3,7 +3,9 @@
 while true
 do
 	utc="$(TZ=UTC date +"%H:%M")"
+	sf="$(TZ=America/Los_Angeles date +"%H:%M")"
+	ny="$(TZ=America/New_York date +"%H:%M")"
 	local="$(date +"%A %Y-%m-%d %H:%M")"
-	printf "%s Local / %s UTC\n" "$local" "$utc"
+	printf "%s Local / %s SF / %s NY / %s UTC\n" "$local" "$sf" "$ny" "$utc"
 	sleep 10
 done
