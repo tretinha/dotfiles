@@ -15,7 +15,6 @@ in
     swaybg
     foot
     atkinson-hyperlegible-mono
-    swaylock
     swayidle
     mako
     libnotify
