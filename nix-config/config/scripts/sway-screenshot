@@ -1,8 +1,4 @@
 #!/bin/sh
-# Screenshot helper: full screen by default, region select with -r.
-# Saves to ~/Pictures/Screenshots and copies the image to the clipboard.
-# Local replacement for sircmpwn's `red -soc` (which uploads to his paste
-# service); region-select style matches his slurp invocation.
 
 dir=$HOME/Pictures/Screenshots
 mkdir -p "$dir"

@@ -1,6 +1,4 @@
 #!/bin/sh
-# swaybar status line, ported from sircmpwn's bin/custom_statusbar:
-# local time + UTC, refreshed every 10 seconds.
 
 while true
 do

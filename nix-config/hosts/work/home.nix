@@ -18,9 +18,6 @@ in
     ../../modules/home/claude-code.nix
   ];
 
-  # Outputs, startup apps, and keybindings live in config/sway/config
-  # (symlinked out-of-store by modules/home/sway.nix).
-
   targets.genericLinux = {
     enable = true;
     gpu.enable = true;
@@ -124,8 +121,6 @@ in
     enableBashIntegration = true;
   };
 
-  # Atuin owns Ctrl-R on this host; fzf stays installed (common.nix) but only
-  # as a library for nvim, so its shell keybindings are disabled here.
   programs.fzf.enableBashIntegration = lib.mkForce false;
 
   # Symlink configurations

@@ -1,6 +1,3 @@
-# Mako notification daemon. sircmpwn ships no mako config (stock defaults);
-# font and colors here mirror his sway palette so banners match the desktop.
-# Out-of-store symlink: edit here, then `makoctl reload`.
 font=DejaVu Sans Mono 10
 background-color=#080F20
 text-color=#ffffff

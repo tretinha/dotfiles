@@ -1,7 +1,4 @@
 #!/bin/sh
-# swayidle wrapper, ported from sircmpwn's bin/idle: warn at 4m30s, lock at
-# 5m, screens off at 10m. Deviations: `power` instead of the deprecated
-# `dpms`, and an added before-sleep lock (this is a laptop).
 
 lock='swaylock -f -i ~/Pictures/wallpaper.jpg --scaling fill'
 

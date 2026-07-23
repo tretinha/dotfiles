@@ -10,28 +10,24 @@ let
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 in
 {
-
-  # Sway and companion tools; the config itself lives in config/sway and is
-  # symlinked out-of-store so it can be edited and reloaded ($mod+Shift+c)
-  # without a home-manager rebuild.
   home.packages = with pkgs; [
     sway
     swaybg
-    foot # sircmpwn's terminal ($mod+Return)
-    atkinson-hyperlegible-mono # his foot font
+    foot
+    atkinson-hyperlegible-mono
     swaylock
     swayidle
     mako
-    libnotify # notify-send, used by sway-idle and sway-screenshot
-    fuzzel # sircmpwn's launcher ($mod+d)
+    libnotify
+    fuzzel
     grim
     slurp
     wl-clipboard
     playerctl
     brightnessctl
-    jq # used by sway-monitor-toggle
+    jq
     networkmanagerapplet
-    dejavu_fonts # sircmpwn's font (sway, swaybar, mako)
+    dejavu_fonts
     xwayland
   ];
 
