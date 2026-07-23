@@ -6,8 +6,7 @@
 
 # Windows key on most keyboards
 set $mod Mod4
-# deviation: alacritty instead of foot
-set $term alacritty
+set $term foot
 set $scripts ~/dotfiles/nix-config/config/scripts
 set $lock swaylock -f -i ~/Pictures/wallpaper.jpg --scaling fill
 

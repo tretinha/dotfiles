@@ -17,6 +17,8 @@ in
   home.packages = with pkgs; [
     sway
     swaybg
+    foot # sircmpwn's terminal ($mod+Return)
+    atkinson-hyperlegible-mono # his foot font
     swaylock
     swayidle
     mako
@@ -46,6 +48,11 @@ in
 
     "fuzzel" = {
       source = create_symlink "${nix_xdg_config}/fuzzel";
+      recursive = true;
+    };
+
+    "foot" = {
+      source = create_symlink "${nix_xdg_config}/foot";
       recursive = true;
     };
   };
