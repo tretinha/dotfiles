@@ -5,7 +5,7 @@
       "Bash(~/.local/bin/acli:*)"
     ]
   },
-  "theme": "dark-ansi",
+  "theme": "custom:torte",
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
