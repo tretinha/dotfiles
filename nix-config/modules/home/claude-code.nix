@@ -20,6 +20,10 @@ in
   # churning /nix/store hash. Read-only is fine: Claude only reads marketplaces.
   home.file.".claude/waza-marketplace".source = inputs.waza;
 
+  home.file.".claude/themes/torte.json".source =
+    config.lib.file.mkOutOfStoreSymlink
+      "${config.home.homeDirectory}/dotfiles/nix-config/config/claude/themes/torte.json";
+
   # Register the Waza marketplace without home-manager owning settings.json.
   # Claude Code refuses to write through a symlink and rewrites settings.json via
   # atomic rename, so a managed/symlinked settings.json would break runtime writes

@@ -1,0 +1,25 @@
+{
+  "name": "Torte",
+  "base": "dark-ansi",
+  "overrides": {
+    "claude": "ansi:yellow",
+    "text": "#f0f0f0",
+    "inactive": "ansi:blackBright",
+    "subtle": "ansi:blackBright",
+    "suggestion": "ansi:blue",
+    "permission": "ansi:blue",
+    "success": "ansi:green",
+    "error": "ansi:red",
+    "warning": "ansi:yellow",
+    "promptBorder": "#2C4B91",
+    "planMode": "ansi:cyan",
+    "autoAccept": "ansi:green",
+    "bashBorder": "ansi:magenta",
+    "diffAdded": "#1e3a1e",
+    "diffRemoved": "#452525",
+    "diffAddedDimmed": "#152815",
+    "diffRemovedDimmed": "#301b1b",
+    "diffAddedWord": "#2f5a2f",
+    "diffRemovedWord": "#6a3535"
+  }
+}
