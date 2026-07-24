@@ -6,6 +6,7 @@
     ]
   },
   "theme": "custom:torte",
+  "showMessageTimestamps": true,
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
