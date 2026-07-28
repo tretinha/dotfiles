@@ -5,4 +5,5 @@ in
 {
   "cloudflare.age".publicKeys = [ media gustavo ];
   "cloudflare-raw.age".publicKeys = [ media gustavo ];
+  "cloudflared-gts.age".publicKeys = [ media gustavo ];
 }

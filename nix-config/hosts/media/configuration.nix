@@ -67,6 +67,11 @@
     "cloudflare-raw" = {
       file = ../../secrets/cloudflare-raw.age;
     };
+    "cloudflared-gts" = {
+      file = ../../secrets/cloudflared-gts.age;
+      owner = "cloudflared";
+      group = "cloudflared";
+    };
   };
 
   security.acme = {
@@ -94,6 +99,32 @@
     domains = [
       "plex.tretinha.com"
     ];
+  };
+
+  services.gotosocial = {
+    enable = true;
+    settings = {
+      host = "social.tretinha.com";
+      protocol = "https";
+      bind-address = "127.0.0.1";
+      port = 8081;
+      trusted-proxies = [ "127.0.0.1/32" ];
+    };
+  };
+
+  users.users.cloudflared = {
+    isSystemUser = true;
+    group = "cloudflared";
+  };
+  users.groups.cloudflared = { };
+
+  services.cloudflared = {
+    enable = true;
+    tunnels."e75d6b43-0e0b-4e52-95b2-cb771763f6cf" = {
+      credentialsFile = config.age.secrets.cloudflared-gts.path;
+      default = "http_status:404";
+      ingress."social.tretinha.com" = "http://127.0.0.1:8081";
+    };
   };
 
   services.nginx = {
