@@ -284,6 +284,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-sway": {
+      "locked": {
+        "lastModified": 1782847189,
+        "narHash": "sha256-twXPFqFsrrY5r28Zh7Homgcp2gUMBgQ6WDS98Q/3xFI=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b6018f87da91d19d0ab4cf979885689b469cdd41",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1785090369,
@@ -340,6 +356,7 @@
         "lix-module": "lix-module",
         "niri": "niri",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-sway": "nixpkgs-sway",
         "waza": "waza",
         "zen-browser": "zen-browser"
       }

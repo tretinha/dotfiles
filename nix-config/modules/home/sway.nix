@@ -2,16 +2,18 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 let
   nix_config_path = "${config.home.homeDirectory}/dotfiles/nix-config";
   nix_xdg_config = "${nix_config_path}/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+  swayPinned = inputs.nixpkgs-sway.legacyPackages.${pkgs.system}.sway;
 in
 {
   home.packages = with pkgs; [
-    sway
+    swayPinned
     swaybg
     foot
     atkinson-hyperlegible-mono
