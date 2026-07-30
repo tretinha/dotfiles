@@ -93,8 +93,8 @@ set $ws9 9
     bindsym $mod+Shift+e exit
     bindsym $mod+Return exec $term
     bindsym $mod+e exec nautilus
-    bindsym Print exec $scripts/sway-screenshot
-    bindsym $mod+Shift+Print exec $scripts/sway-screenshot -r
+    bindsym $mod+shift+Print exec $scripts/sway-screenshot
+    bindsym Print exec $scripts/sway-screenshot -r
     bindsym $mod+d exec fuzzel
     bindsym $mod+Shift+w exec networkmanager_dmenu
     bindsym $mod+n exec makoctl dismiss
@@ -130,7 +130,7 @@ focus_on_window_activation urgent
 
 input type:keyboard {
     xkb_layout "us"
-    xkb_variant "intl"
+    xkb_variant "altgr-intl"
     repeat_delay 150
     repeat_rate 40
 }
