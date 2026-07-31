@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 while true; do
-    if swaymsg -t get_outputs | jq -e 'any(.[]; .name == "DP-1")' > /dev/null; then
+    if swaymsg -t get_outputs | jq -e 'any(.[]; .name != "eDP-1")' > /dev/null; then
         swaymsg output eDP-1 disable
     else
         swaymsg output eDP-1 enable

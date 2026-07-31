@@ -139,7 +139,7 @@ input "2:1:PS/2_Generic_Mouse" events disabled
 input "7504:24926:Adv360_Pro_Mouse" events disabled
 
 output * bg ~/Pictures/wallpaper.jpg fill #080F20
-output DP-1 mode 2560x1440@120Hz pos 0 0
+output "Dell Inc. DELL U2724DE 3Y9K9P3" mode 2560x1440@120Hz pos 0 0
 output eDP-1 scale 1.25 pos 0 1440
 
 bar {
