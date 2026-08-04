@@ -125,8 +125,7 @@ client.unfocused $next_light $next_light $next_black $next_light $next_light
 client.focused_inactive $next_light $next_light $next_black $next_light $next_light
 client.urgent $urgent $urgent $next_white $urgent $urgent
 
-default_border normal 2
-titlebar_padding 6 3
+default_border pixel 3
 
 focus_on_window_activation urgent
 
