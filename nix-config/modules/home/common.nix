@@ -119,7 +119,7 @@
       bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'wl-copy'
 
       set -g status-position top
-      set -g status-style bg=#111111,fg=#f0f0f0
+      set -g status-style bg=#999999,fg=#1a1a1a
       set -g status-left ""
       set -g status-right ""
       set -g status-justify left
@@ -127,16 +127,16 @@
       setw -g window-status-separator ""
       setw -g window-status-format " #I #W "
       setw -g window-status-current-format " #I #W "
-      setw -g window-status-style fg=#888888
-      setw -g window-status-current-style bg=#2C4B91,fg=#ffffff
-      setw -g window-status-activity-style fg=#e6c547
+      setw -g window-status-style fg=#555555
+      setw -g window-status-current-style bg=#1a1a1a,fg=#ffffff
+      setw -g window-status-activity-style fg=#7d6b3a
 
-      set -g pane-border-style fg=#383838
-      set -g pane-active-border-style fg=#2C4B91
-      set -g message-style bg=#2C4B91,fg=#ffffff
-      set -g message-command-style bg=#2C4B91,fg=#ffffff
-      setw -g mode-style bg=#2C4B91,fg=#ffffff
-      setw -g clock-mode-colour "#2C4B91"
+      set -g pane-border-style fg=#999999
+      set -g pane-active-border-style fg=#1a1a1a
+      set -g message-style bg=#1a1a1a,fg=#ffffff
+      set -g message-command-style bg=#1a1a1a,fg=#ffffff
+      setw -g mode-style bg=#1a1a1a,fg=#ffffff
+      setw -g clock-mode-colour "#3a5a7d"
     '';
   };
 }

@@ -29,10 +29,23 @@ in
     networkmanagerapplet
     networkmanager_dmenu
     dejavu_fonts
+    liberation_ttf
     hicolor-icon-theme
     librsvg
     xwayland
   ];
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "OneStepBack";
+      package = pkgs.onestepback;
+    };
+    font = {
+      name = "Liberation Sans";
+      size = 10;
+    };
+  };
 
   xdg.configFile."systemd/user/blueman-manager.service".source =
     "${pkgs.blueman}/share/systemd/user/blueman-manager.service";

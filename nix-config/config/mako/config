@@ -1,10 +1,10 @@
-font=DejaVu Sans Mono 10
-background-color=#080F20
-text-color=#ffffff
-border-color=#2C4B91
-border-size=4
+font=Liberation Sans 10
+background-color=#b8b8b8
+text-color=#000000
+border-color=#555555
+border-size=2
 default-timeout=10000
 
 [urgency=high]
-border-color=#900000
+border-color=#8b4a4a
 default-timeout=0

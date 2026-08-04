@@ -2,7 +2,7 @@ set $mod Mod4
 set $term foot
 set $scripts ~/dotfiles/nix-config/config/scripts
 
-font pango:DejaVu Sans Mono 10
+font pango:Liberation Sans 10
 
 set $ws10 10
 set $ws1 1
@@ -113,18 +113,20 @@ set $ws9 9
     bindsym --locked XF86MonBrightnessUp exec brightnessctl --class=backlight set +10%
     bindsym --locked XF86MonBrightnessDown exec brightnessctl --class=backlight set 10%-
 
-set $primary #2C4B91
-set $background #080F20
-set $bar_background #111111
-set $foreground #ffffff
-set $red #900000
+set $next_light #aaaaaa
+set $next_mid #7f7f7f
+set $next_dark #555555
+set $next_black #000000
+set $next_white #ffffff
+set $urgent #8b4a4a
 
-client.focused $primary $primary #ffffff $primary $primary
-client.unfocused $background $background #ffffff $background $background
-client.focused_inactive $background $background #ffffff $background $background
+client.focused $next_black $next_black $next_white $next_mid $next_mid
+client.unfocused $next_light $next_light $next_black $next_light $next_light
+client.focused_inactive $next_light $next_light $next_black $next_light $next_light
+client.urgent $urgent $urgent $next_white $urgent $urgent
 
-default_border pixel 4
-hide_edge_borders smart
+default_border normal 2
+titlebar_padding 6 3
 
 focus_on_window_activation urgent
 
@@ -138,7 +140,7 @@ input type:keyboard {
 input "2:1:PS/2_Generic_Mouse" events disabled
 input "7504:24926:Adv360_Pro_Mouse" events disabled
 
-output * bg ~/Pictures/wallpaper.jpg fill #080F20
+output * bg "#555555" solid_color
 output "Dell Inc. DELL U2724DE 3Y9K9P3" mode 2560x1440@120Hz pos 0 0
 output eDP-1 scale 1.25 pos 0 1440
 
@@ -147,15 +149,15 @@ bar {
         status_command ~/dotfiles/nix-config/config/scripts/sway-status
         position top
         pango_markup disabled
-        font DejaVu Sans Mono 10
+        font Liberation Sans 10
         strip_workspace_numbers yes
         colors {
-            background $bar_background
-            statusline $foreground
-            inactive_workspace $bar_background $bar_background $foreground
-            active_workspace $bar_background $bar_background $foreground
-            urgent_workspace $red $red $foreground
-            focused_workspace $primary $primary $foreground
+            background $next_light
+            statusline $next_black
+            inactive_workspace $next_light $next_light $next_black
+            active_workspace $next_light $next_light $next_black
+            urgent_workspace $urgent $urgent $next_white
+            focused_workspace $next_black $next_black $next_white
         }
 }
 

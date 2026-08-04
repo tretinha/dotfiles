@@ -1,7 +1,8 @@
 require("config.lazy")
 
-vim.opt.termguicolors = false
-vim.cmd("colorscheme torte")
+vim.opt.termguicolors = true
+vim.opt.background = "light"
+vim.cmd("colorscheme quiet")
 
 -- Build configuration to just clean
 vim.keymap.set("n", "<leader>jc", function()
