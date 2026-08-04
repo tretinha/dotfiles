@@ -23,6 +23,9 @@ in
   home.file.".claude/themes/torte.json".source =
     config.lib.file.mkOutOfStoreSymlink
       "${config.home.homeDirectory}/dotfiles/nix-config/config/claude/themes/torte.json";
+  home.file.".claude/themes/next.json".source =
+    config.lib.file.mkOutOfStoreSymlink
+      "${config.home.homeDirectory}/dotfiles/nix-config/config/claude/themes/next.json";
 
   # Register the Waza marketplace without home-manager owning settings.json.
   # Claude Code refuses to write through a symlink and rewrites settings.json via

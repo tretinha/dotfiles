@@ -3,6 +3,8 @@ require("config.lazy")
 vim.opt.termguicolors = true
 vim.opt.background = "light"
 vim.cmd("colorscheme quiet")
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 
 -- Build configuration to just clean
 vim.keymap.set("n", "<leader>jc", function()

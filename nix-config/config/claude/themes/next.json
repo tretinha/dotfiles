@@ -1,0 +1,25 @@
+{
+  "name": "NeXT",
+  "base": "light-ansi",
+  "overrides": {
+    "text": "#1a1a1a",
+    "inactive": "#555555",
+    "subtle": "#555555",
+    "claude": "#b05a2a",
+    "suggestion": "#3a5a7d",
+    "permission": "#3a5a7d",
+    "success": "#4a6b4a",
+    "error": "#7d4a4a",
+    "warning": "#7d6b3a",
+    "promptBorder": "#555555",
+    "planMode": "#3a6b6b",
+    "autoAccept": "#4a6b4a",
+    "bashBorder": "#6b4a6b",
+    "diffAdded": "#c2d4b8",
+    "diffRemoved": "#d8bcbc",
+    "diffAddedDimmed": "#c0cabb",
+    "diffRemovedDimmed": "#ccc0c0",
+    "diffAddedWord": "#9dbf88",
+    "diffRemovedWord": "#cf9d9d"
+  }
+}
