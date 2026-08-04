@@ -35,6 +35,12 @@ in
     xwayland
   ];
 
+  fonts.fontconfig.defaultFonts = {
+    sansSerif = [ "Liberation Sans" ];
+    serif = [ "Liberation Serif" ];
+    monospace = [ "Liberation Mono" ];
+  };
+
   gtk = {
     enable = true;
     theme = {
