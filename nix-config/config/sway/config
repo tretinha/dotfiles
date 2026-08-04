@@ -89,7 +89,6 @@ set $ws9 9
     bindsym $mod+Shift+t move scratchpad
     bindsym $mod+t scratchpad show
     bindsym $mod+b border toggle
-    bindsym $mod+Shift+b bar mode toggle
     bindsym $mod+Shift+c reload
     bindsym $mod+Shift+e exit
     bindsym $mod+Return exec $term
@@ -148,9 +147,6 @@ output eDP-1 scale 1.25 pos 0 1440
 bar {
         swaybar_command /home/gustavo/dotfiles/nix-config/config/scripts/sway-bar
         status_command ~/dotfiles/nix-config/config/scripts/sway-status
-        mode hide
-        hidden_state hide
-        modifier $mod
         position top
         pango_markup disabled
         font Liberation Sans 10

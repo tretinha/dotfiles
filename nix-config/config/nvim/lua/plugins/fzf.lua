@@ -3,8 +3,18 @@ return {
     "ibhagwan/fzf-lua",
     dependencies = {},
     opts = {
+      fzf_colors = {
+        true,
+        ["bg+"] = "#e0a458",
+        ["fg+"] = "#000000",
+        ["pointer"] = "#b05a2a",
+      },
+      hls = {
+        dir_part = "Comment",
+        file_part = "Normal",
+      },
       files = {
-        file_icons = false, 
+        file_icons = false,
         color_icons = false,
         git_icons = true,
 	-- fd_opts = "--exclude '.terraform'"
@@ -13,7 +23,6 @@ return {
         file_icons = false,
         color_icons = false,
       },
-      -- fzf_colors = false, 
     },
     keys = {
       { "<leader>ff", function() require("fzf-lua").files() end, desc = "Find Files" },

@@ -131,11 +131,12 @@
       setw -g window-status-current-style bg=#1a1a1a,fg=#ffffff
       setw -g window-status-activity-style fg=#7d6b3a
 
-      set -g pane-border-style fg=#999999
-      set -g pane-active-border-style fg=#1a1a1a
-      set -g message-style bg=#1a1a1a,fg=#ffffff
-      set -g message-command-style bg=#1a1a1a,fg=#ffffff
-      setw -g mode-style bg=#1a1a1a,fg=#ffffff
+      set -g pane-border-lines heavy
+      set -g pane-border-style fg=#777777
+      set -g pane-active-border-style fg=#b05a2a
+      set -g message-style bg=#e0a458,fg=#000000
+      set -g message-command-style bg=#e0a458,fg=#000000
+      setw -g mode-style bg=#e0a458,fg=#000000
       setw -g clock-mode-colour "#3a5a7d"
     '';
   };
