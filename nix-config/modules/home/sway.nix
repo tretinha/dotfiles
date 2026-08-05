@@ -35,6 +35,13 @@ in
     xwayland
   ];
 
+  xdg.desktopEntries."4coder" = {
+    name = "4coder";
+    exec = "${config.home.homeDirectory}/4cc/build/4ed";
+    terminal = false;
+    categories = [ "Development" "TextEditor" ];
+  };
+
   fonts.fontconfig.defaultFonts = {
     sansSerif = [ "Liberation Sans" ];
     serif = [ "Liberation Serif" ];

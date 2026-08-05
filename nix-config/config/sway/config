@@ -41,7 +41,7 @@ set $ws9 9
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
-    bindsym $mod+c move position center
+    bindsym $mod+c exec /home/gustavo/4cc/build/4ed
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
     bindsym $mod+3 workspace $ws3
