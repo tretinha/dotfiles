@@ -72,13 +72,6 @@
       owner = "cloudflared";
       group = "cloudflared";
     };
-    "gts-metrics-env" = {
-      file = ../../secrets/gts-metrics-env.age;
-    };
-    "gts-metrics-pw" = {
-      file = ../../secrets/gts-metrics-pw.age;
-      owner = "prometheus";
-    };
     "grafana-admin-pw" = {
       file = ../../secrets/grafana-admin-pw.age;
       owner = "grafana";
@@ -116,9 +109,15 @@
     ];
   };
 
+  systemd.services.gotosocial.environment = {
+    OTEL_METRICS_PRODUCERS = "prometheus";
+    OTEL_METRICS_EXPORTER = "prometheus";
+    OTEL_EXPORTER_PROMETHEUS_HOST = "127.0.0.1";
+    OTEL_EXPORTER_PROMETHEUS_PORT = "9464";
+  };
+
   services.gotosocial = {
     enable = true;
-    environmentFile = config.age.secrets.gts-metrics-env.path;
     settings = {
       host = "social.tretinha.com";
       protocol = "https";
@@ -144,12 +143,7 @@
       }
       {
         job_name = "gotosocial";
-        metrics_path = "/metrics";
-        basic_auth = {
-          username = "prometheus";
-          password_file = config.age.secrets.gts-metrics-pw.path;
-        };
-        static_configs = [ { targets = [ "127.0.0.1:8081" ]; } ];
+        static_configs = [ { targets = [ "127.0.0.1:9464" ]; } ];
       }
     ];
   };
