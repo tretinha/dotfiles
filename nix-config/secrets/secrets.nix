@@ -6,4 +6,8 @@ in
   "cloudflare.age".publicKeys = [ media gustavo ];
   "cloudflare-raw.age".publicKeys = [ media gustavo ];
   "cloudflared-gts.age".publicKeys = [ media gustavo ];
+  "gts-metrics-env.age".publicKeys = [ media gustavo ];
+  "gts-metrics-pw.age".publicKeys = [ media gustavo ];
+  "grafana-admin-pw.age".publicKeys = [ media gustavo ];
+  "grafana-secret-key.age".publicKeys = [ media gustavo ];
 }
