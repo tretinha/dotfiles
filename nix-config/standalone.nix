@@ -9,6 +9,28 @@
           config = {
             allowUnfree = true;
           };
+          overlays = [
+            # Pin libinput to 1.29.2 (pre plugin-system rewrite) for the sway
+            # stack only; mutter and other packages require libinput >= 1.30.
+            # See the nixpkgs-libinput input comment.
+            (
+              final: prev:
+              let
+                libinput-pinned =
+                  (import inputs.nixpkgs-libinput {
+                    system = "x86_64-linux";
+                  }).libinput;
+              in
+              {
+                sway-unwrapped = prev.sway-unwrapped.override {
+                  libinput = libinput-pinned;
+                  wlroots_0_20 = prev.wlroots_0_20.override {
+                    libinput = libinput-pinned;
+                  };
+                };
+              }
+            )
+          ];
         };
         extraSpecialArgs = {
           inherit inputs;

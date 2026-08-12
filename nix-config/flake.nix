@@ -9,6 +9,13 @@
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
+    # libinput 1.30+ rewrote button handling (debounce moved into the new
+    # plugin system) and causes phantom double clicks / broken drag selection
+    # with the Logitech MX Ergo under sway. nixos-25.11 carries the last
+    # pre-rewrite release (1.29.2), the same version niri linked against.
+    nixpkgs-libinput = {
+      url = "github:nixos/nixpkgs/nixos-25.11";
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
